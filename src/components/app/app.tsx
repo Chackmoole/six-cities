@@ -1,8 +1,13 @@
 import {Main} from '../../pages/main/main';
 
-function App(): JSX.Element {
+interface iProps {
+  offersCount: number;
+}
+
+function App({offersCount}:iProps): JSX.Element {
+
   return (
-    <Main/>
+    <Main offersCount={offersCount}/>
   );
 }
 
