@@ -1,10 +1,10 @@
 import {Card} from '../../components/card/card';
 
-interface iProps {
+interface IProps {
   offersCount: number;
 }
 
-export const Main = ({offersCount}:iProps) => (
+export const Main = ({offersCount}:IProps) => (
 
   <main className="page__main page__main--index">
     <h1 className="visually-hidden">Cities</h1>
