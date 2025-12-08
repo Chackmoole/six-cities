@@ -1,5 +1,11 @@
-function App(): JSX.Element {
-  return <p>Hello, world!</p>;
+import {Main} from '../../pages/main/main';
+
+interface IProps {
+  offersCount: number;
 }
 
-export default App;
+export const App = ({offersCount}:IProps) => (
+  <Main offersCount={offersCount}/>
+);
+
+
