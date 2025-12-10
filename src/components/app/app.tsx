@@ -7,18 +7,17 @@ import {NotFoundPage} from '../../pages/not-found-page/not-found-page';
 
 interface IProps {
   offersCount: number;
+  isAuth: boolean;
 }
 
-export const App = ({offersCount}:IProps) => (
+export const App = ({offersCount, isAuth}:IProps) => (
   <BrowserRouter>
     <Routes>
       <Route path='/' element={<Main offersCount={offersCount}/>} />
       <Route path={'/login'} element={<Login/>}/>
-      <Route path={'/favorites'} element={<Favorites/>}/>
+      <Route path={'/favorites'} element={isAuth ? <Favorites/> : <Login/> }/>
       <Route path={'/offer:id'} element={<Property/>}/>
       <Route path={'*'} element={<NotFoundPage/>}/>
     </Routes>
   </BrowserRouter>
 );
-
-
