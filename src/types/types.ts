@@ -14,6 +14,9 @@ export interface IOffer {
   isPremium: boolean;
   rating: number;
   type: string;
+  bedrooms: number;
+  maxAdults: number;
+  price: number;
   goods: string[];
   host:{
     id: number;

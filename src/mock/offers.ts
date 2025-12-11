@@ -1,4 +1,6 @@
-export const HOTELS = [
+import {IOffer} from '../types/types';
+
+export const HOTELS: IOffer[] = [
 
   {
     'city': {
