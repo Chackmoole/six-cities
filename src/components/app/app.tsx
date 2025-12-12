@@ -18,7 +18,7 @@ export const App = ({offersCount, isAuth, hotels}:IProps) => (
       <Route path='/' element={<Main offersCount={offersCount}/>} />
       <Route path={'/login'} element={<Login/>}/>
       <Route path={'/favorites'} element={isAuth ? <Favorites/> : <Login/> }/>
-      <Route path={'/offer:id'} element={<Property/>}/>
+      <Route path={'/offer/:id'} element={<Property hotels={hotels} />}/>
       <Route path={'*'} element={<NotFoundPage/>}/>
     </Routes>
   </BrowserRouter>

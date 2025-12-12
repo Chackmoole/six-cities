@@ -1,6 +1,6 @@
 import {IOffer} from '../types/types';
 
-export const HOTELS: IOffer[] = [
+export const OFFERS: IOffer[] = [
 
   {
     'city': {
