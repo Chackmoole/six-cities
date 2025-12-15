@@ -5,12 +5,18 @@ interface IProps {
   offer: IOffer;
 }
 
-export const Card = ({offer}:IProps) => {
+interface IActiveOffer {
+  handleSetActiveOffer: (id: number) => void;
+  handleUnSetActiveOffer: () => void;
+}
+
+export const Card = ({offer, handleSetActiveOffer, handleUnSetActiveOffer}:IProps & IActiveOffer
+) => {
   const MAX_PERCENT = 100;
   const MAX_STARS = 5;
 
   return (
-    <article className="cities__place-card place-card">
+    <article className="cities__place-card place-card" onMouseMove={() => handleSetActiveOffer(offer.id)} onMouseLeave={handleUnSetActiveOffer}>
       {offer.isPremium ?
         <div className="place-card__mark">
           <span>Premium</span>
