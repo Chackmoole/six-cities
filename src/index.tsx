@@ -11,6 +11,6 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App offersCount={OFFERS_COUNT} isAuth={isAuth} hotels={OFFERS}/>
+    <App offersCount={OFFERS_COUNT} isAuth={isAuth} offers={OFFERS}/>
   </React.StrictMode>,
 );

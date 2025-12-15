@@ -9,16 +9,16 @@ import {IOffer} from '../../types/types';
 interface IProps {
   offersCount: number;
   isAuth: boolean;
-  hotels: IOffer[];
+  offers: IOffer[];
 }
 
-export const App = ({offersCount, isAuth, hotels}:IProps) => (
+export const App = ({offersCount, isAuth, offers}:IProps) => (
   <BrowserRouter>
     <Routes>
-      <Route path='/' element={<Main offersCount={offersCount}/>} />
+      <Route path='/' element={<Main offersCount={offersCount} offers={offers} />} />
       <Route path={'/login'} element={<Login/>}/>
       <Route path={'/favorites'} element={isAuth ? <Favorites/> : <Login/> }/>
-      <Route path={'/offer/:id'} element={<Property hotels={hotels} />}/>
+      <Route path={'/offer/:id'} element={<Property offers={offers} />}/>
       <Route path={'*'} element={<NotFoundPage/>}/>
     </Routes>
   </BrowserRouter>

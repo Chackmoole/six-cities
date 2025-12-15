@@ -1,11 +1,11 @@
 import {IOffer} from '../../types/types';
 
 interface IProps {
-  hotels: IOffer[];
+  offers: IOffer[];
 }
 
 
-export const Property = ({hotels}: IProps) => (
+export const Property = ({offers}: IProps) => (
 
   <>
     <div style={{display: 'none'}}>

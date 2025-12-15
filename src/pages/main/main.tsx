@@ -1,10 +1,12 @@
-import {Card} from '../../components/card/card';
+import {IOffer} from '../../types/types';
+import {CardList} from '../../components/card-list/card-list';
 
 interface IProps {
   offersCount: number;
+  offers: IOffer[];
 }
 
-export const Main = ({offersCount}:IProps) => (
+export const Main = ({offersCount, offers}:IProps) => (
 
   <>
     <div style={{display: 'none'}}>
@@ -115,13 +117,7 @@ export const Main = ({offersCount}:IProps) => (
                   <li className="places__option" tabIndex={0}>Top rated first</li>
                 </ul>
               </form>
-              <div className="cities__places-list places__list tabs__content">
-                <Card/>
-                <Card/>
-                <Card/>
-                <Card/>
-                <Card/>
-              </div>
+              <CardList offers={offers}/>
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"></section>

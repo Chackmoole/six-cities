@@ -202,7 +202,7 @@ export const OFFERS: IOffer[] = [
       'https://10.react.htmlacademy.pro/static/hotel/9.jpg'
     ],
     'title': 'House in countryside',
-    'isFavorite': false,
+    'isFavorite': true,
     'isPremium': false,
     'rating': 3.1,
     'type': 'apartment',
