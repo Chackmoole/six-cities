@@ -3,14 +3,11 @@ import {Link} from 'react-router-dom';
 
 interface IProps {
   offer: IOffer;
-}
-
-interface IActiveOffer {
   handleSetActiveOffer: (id: number) => void;
   handleUnSetActiveOffer: () => void;
 }
 
-export const Card = ({offer, handleSetActiveOffer, handleUnSetActiveOffer}:IProps & IActiveOffer
+export const Card = ({offer, handleSetActiveOffer, handleUnSetActiveOffer}:IProps
 ) => {
   const MAX_PERCENT = 100;
   const MAX_STARS = 5;
