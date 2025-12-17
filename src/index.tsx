@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { App } from './components/app/app';
-
-const OFFERS_COUNT = 5;
+import {OFFERS} from './mock/offers';
 const isAuth = false;
 
 const root = ReactDOM.createRoot(
@@ -11,6 +10,6 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App offersCount={OFFERS_COUNT} isAuth={isAuth}/>
+    <App isAuth={isAuth} offers={OFFERS}/>
   </React.StrictMode>,
 );
