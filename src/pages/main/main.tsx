@@ -2,11 +2,10 @@ import {IOffer} from '../../types/types';
 import {CardList} from '../../components/card-list/card-list';
 
 interface IProps {
-  offersCount: number;
   offers: IOffer[];
 }
 
-export const Main = ({offersCount, offers}:IProps) => (
+export const Main = ({offers}:IProps) => (
 
   <>
     <div style={{display: 'none'}}>
