@@ -1,3 +1,5 @@
+import {CITIES} from '../data/cities';
+
 export interface IOffer {
   city:{
     name: string;
@@ -31,4 +33,17 @@ export interface IOffer {
     zoom: number;
   };
   id: number;
+}
+
+export type ICitiesName = typeof CITIES[number];
+
+export interface ILocation {
+  latitude: number;
+  longitude: number;
+  zoom: number;
+}
+
+export interface City {
+  name: ICitiesName;
+  location: ILocation;
 }
