@@ -1,6 +1,7 @@
 import {IOffer} from '../../types/types';
 import {CardList} from '../../components/card-list/card-list';
 import {Map} from '../../components/map/map';
+import {OFFERS} from '../../mock/offers';
 
 interface IProps {
   offers: IOffer[];
@@ -121,7 +122,7 @@ export const Main = ({offers}:IProps) => (
             </section>
             <div className="cities__right-section">
               <section id='map' className="cities__map map">
-                <Map />
+                <Map city={OFFERS[0].city}/>
               </section>
             </div>
           </div>
