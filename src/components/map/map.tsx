@@ -29,12 +29,10 @@ export const Map = ({city}: IProps) => {
       });
 
       const marker = document.createElement('div');
-      marker.className = 'custom-marker';
       marker.style.backgroundImage = `url(${iconMarker})`;
       marker.style.width = '27px';
       marker.style.height = '39px';
       marker.style.cursor = 'pointer';
-      marker.style.backgroundSize = '100%';
 
       new maplibregl.Marker({element: marker}).setLngLat([city.location.longitude, city.location.latitude]).addTo(map);
 
