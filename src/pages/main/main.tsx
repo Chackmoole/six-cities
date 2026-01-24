@@ -1,9 +1,8 @@
 import {useState} from 'react';
 import {IOffer} from '../../types/types';
 import {CardList} from '../../components/card-list/card-list';
-import {Map} from '../../components/map/map';
-import {OFFERS} from '../../mock/offers';
 import {MainTabs} from '../../components/main-tabs/main-tabs';
+import {MapBox} from '../../components/map-box/map-box';
 
 interface IProps {
   offers: IOffer[];
@@ -11,7 +10,7 @@ interface IProps {
 
 export const Main = ({offers}:IProps) => {
   const [activeTab, setActiveTab] = useState('Amsterdam');
-  console.log(activeTab);
+  // console.log(activeTab);
 
   const handlerTabClick = (data: string) => {
     setActiveTab(data);
@@ -98,11 +97,7 @@ export const Main = ({offers}:IProps) => {
                 </form>
                 <CardList offers={offers}/>
               </section>
-              <div className="cities__right-section">
-                <section id='map' className="cities__map map">
-                  <Map city={OFFERS[0].city}/>
-                </section>
-              </div>
+              <MapBox activeTab={activeTab}/>
             </div>
           </div>
         </main>
