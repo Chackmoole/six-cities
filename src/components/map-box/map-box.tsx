@@ -1,5 +1,6 @@
 import {Map} from '../map/map';
 import {OFFERS} from '../../mock/offers';
+import {createLocation} from '../../util/util';
 
 interface IProps {
   activeTab: string;
@@ -17,6 +18,7 @@ export const MapBox = ({activeTab}:IProps) => {
       default: return OFFERS[0].city;
     }
   };
+  createLocation(activeTab);
 
 
   return (
