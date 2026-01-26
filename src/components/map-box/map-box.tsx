@@ -18,13 +18,11 @@ export const MapBox = ({activeTab}:IProps) => {
       default: return OFFERS[0].city;
     }
   };
-  createLocation(activeTab);
-
 
   return (
     <div className="cities__right-section">
       <section id='map' className="cities__map map">
-        <Map city={setCurrentCity()}/>
+        <Map city={setCurrentCity()} locations={createLocation(activeTab)}/>
       </section>
     </div>
   );

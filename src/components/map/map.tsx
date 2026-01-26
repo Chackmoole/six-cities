@@ -3,7 +3,7 @@ import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import iconMarker from '../../assets/img/pin.svg';
 
-interface Location {
+interface ILocation {
     latitude: number;
     longitude: number;
     zoom: number;
@@ -12,13 +12,13 @@ interface Location {
 interface IProps {
   city: {
     name: string;
-    location: Location;
+    location: ILocation;
   };
+  locations: ILocation[];
 }
 
-export const Map = ({city}: IProps) => {
+export const Map = ({city, locations}: IProps) => {
   const mapContainer = useRef(null);
-
   useEffect(() => {
     if (mapContainer.current) {
       const map = new maplibregl.Map({
@@ -28,13 +28,24 @@ export const Map = ({city}: IProps) => {
         zoom: city.location.zoom,
       });
 
-      const marker = document.createElement('div');
-      marker.style.backgroundImage = `url(${iconMarker})`;
-      marker.style.width = '27px';
-      marker.style.height = '39px';
-      marker.style.cursor = 'pointer';
+      locations.map((location) => {
+        const marker = document.createElement('div');
+        marker.style.backgroundImage = `url(${iconMarker})`;
+        marker.style.width = '27px';
+        marker.style.height = '39px';
+        marker.style.cursor = 'pointer';
 
-      new maplibregl.Marker({element: marker}).setLngLat([city.location.longitude, city.location.latitude]).addTo(map);
+        new maplibregl.Marker({element: marker}).setLngLat([location.longitude, location.latitude]).addTo(map);
+      });
+
+
+      // const marker = document.createElement('div');
+      // marker.style.backgroundImage = `url(${iconMarker})`;
+      // marker.style.width = '27px';
+      // marker.style.height = '39px';
+      // marker.style.cursor = 'pointer';
+      //
+      // new maplibregl.Marker({element: marker}).setLngLat([city.location.longitude, city.location.latitude]).addTo(map);
 
     }
   }, [city]);
