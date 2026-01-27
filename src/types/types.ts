@@ -48,7 +48,7 @@ export interface City {
   location: ILocation;
 }
 
-interface IUserReviews {
+interface IUserReview {
   id: number;
   name: string;
   avatarUrl: string;
@@ -60,5 +60,5 @@ export interface IReview {
   comment: string;
   date: string;
   rating: number;
-  user: IUserReviews;
+  user: IUserReview;
 }

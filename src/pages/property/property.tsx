@@ -1,5 +1,6 @@
 import {IOffer} from '../../types/types';
 import {PropertyReviews} from '../../components/property-reviews/property-reviews';
+import {reviews} from '../../mock/reviews';
 
 interface IProps {
   offers: IOffer[];
@@ -161,7 +162,7 @@ export const Property = ({offers}: IProps) => (
                   </p>
                 </div>
               </div>
-              <PropertyReviews/>
+              <PropertyReviews reviews={reviews}/>
             </div>
           </div>
           <section className="property__map map"></section>
