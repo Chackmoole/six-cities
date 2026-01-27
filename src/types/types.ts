@@ -47,3 +47,18 @@ export interface City {
   name: ICitiesName;
   location: ILocation;
 }
+
+interface IUserReviews {
+  id: number;
+  name: string;
+  avatarUrl: string;
+  isPro: boolean;
+}
+
+export interface IReview {
+  id: number;
+  comment: string;
+  date: string;
+  rating: number;
+  user: IUserReviews;
+}
