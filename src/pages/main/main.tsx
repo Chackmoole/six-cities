@@ -10,7 +10,6 @@ interface IProps {
 
 export const Main = ({offers}:IProps) => {
   const [activeTab, setActiveTab] = useState('Amsterdam');
-  // console.log(activeTab);
 
   const handlerTabClick = (data: string) => {
     setActiveTab(data);

@@ -38,15 +38,6 @@ export const Map = ({city, locations}: IProps) => {
         new maplibregl.Marker({element: marker}).setLngLat([location.longitude, location.latitude]).addTo(map);
       });
 
-
-      // const marker = document.createElement('div');
-      // marker.style.backgroundImage = `url(${iconMarker})`;
-      // marker.style.width = '27px';
-      // marker.style.height = '39px';
-      // marker.style.cursor = 'pointer';
-      //
-      // new maplibregl.Marker({element: marker}).setLngLat([city.location.longitude, city.location.latitude]).addTo(map);
-
     }
   }, [city]);
 
