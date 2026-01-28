@@ -22,3 +22,15 @@ export const conversionDate = (date: string) => {
     default: return 'last month';
   }
 };
+
+export const setCurrentCity = (activeTab:string) => {
+  switch(activeTab){
+    case 'Paris':
+      return OFFERS[0].city;
+    case 'Dusseldorf':
+      return OFFERS[1].city;
+    case 'Amsterdam':
+      return OFFERS[3].city;
+    default: return OFFERS[0].city;
+  }
+};

@@ -14,10 +14,11 @@ interface IProps {
     name: string;
     location: ILocation;
   };
-  locations: ILocation[];
+  locations?: ILocation[];
+  heightStyle: string;
 }
 
-export const Map = ({city, locations}: IProps) => {
+export const Map = ({city, locations, heightStyle}: IProps) => {
   const mapContainer = useRef(null);
   useEffect(() => {
     if (mapContainer.current) {
@@ -27,8 +28,7 @@ export const Map = ({city, locations}: IProps) => {
         center: [city.location.longitude, city.location.latitude],
         zoom: city.location.zoom,
       });
-
-      locations.map((location) => {
+      if (locations){ locations.map((location) => {
         const marker = document.createElement('div');
         marker.style.backgroundImage = `url(${iconMarker})`;
         marker.style.width = '27px';
@@ -36,7 +36,8 @@ export const Map = ({city, locations}: IProps) => {
         marker.style.cursor = 'pointer';
 
         new maplibregl.Marker({element: marker}).setLngLat([location.longitude, location.latitude]).addTo(map);
-      });
+      });}
+
 
     }
   }, [city]);
@@ -44,7 +45,7 @@ export const Map = ({city, locations}: IProps) => {
   return (
     <div
       ref={mapContainer}
-      style={{width: '100%', height: '1000px'}}
+      style={{width: '100%', height: heightStyle}}
     />
   );
 };

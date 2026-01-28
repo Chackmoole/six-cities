@@ -1,31 +1,15 @@
 import {Map} from '../map/map';
-import {OFFERS} from '../../mock/offers';
-import {createLocation} from '../../util/util';
+import {createLocation, setCurrentCity} from '../../util/util';
 
 interface IProps {
   activeTab: string;
 }
 
-export const MapBox = ({activeTab}:IProps) => {
-  const setCurrentCity = () => {
-    switch(activeTab){
-      case 'Paris':
-        return OFFERS[0].city;
-      case 'Dusseldorf':
-        return OFFERS[1].city;
-      case 'Amsterdam':
-        return OFFERS[3].city;
-      default: return OFFERS[0].city;
-    }
-  };
-
-  return (
-    <div className="cities__right-section">
-      <section id='map' className="cities__map map">
-        <Map city={setCurrentCity()} locations={createLocation(activeTab)}/>
-      </section>
-    </div>
-  );
-
-};
+export const MapBox = ({activeTab}:IProps) => (
+  <div className="cities__right-section">
+    <section id='map' className="cities__map map">
+      <Map city={setCurrentCity(activeTab)} locations={createLocation(activeTab)} heightStyle={'1000px'}/>
+    </section>
+  </div>
+);
 
