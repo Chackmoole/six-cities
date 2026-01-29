@@ -71,7 +71,7 @@ export const Main = ({offers}:IProps) => {
           <h1 className="visually-hidden">Cities</h1>
           <div className="tabs">
             <section className="locations container">
-              <MainTabs onClick={handlerTabClick}/>
+              <MainTabs handleChangeTown={handlerTabClick}/>
             </section>
           </div>
           <div className="cities">
