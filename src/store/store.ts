@@ -1,9 +1,9 @@
 import {configureStore} from '@reduxjs/toolkit';
-import {townState} from './townSlice';
+import {locationReducer} from './locationSlice';
 
 export const store = configureStore({
   reducer: {
-    town: townState,
+    location: locationReducer,
   }
 });
 

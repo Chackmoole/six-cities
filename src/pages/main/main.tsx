@@ -10,7 +10,7 @@ interface IProps {
 }
 
 export const Main = ({offers}:IProps) => {
-  const activeTab = useSelector((state: RootState) => state.town.town);
+  const activeTab = useSelector((state: RootState) => state.location.town);
 
   return (
     <>
