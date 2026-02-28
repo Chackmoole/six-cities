@@ -2,6 +2,8 @@ import {useRef, useEffect} from 'react';
 import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import iconMarker from '../../assets/img/pin.svg';
+import {useSelector} from 'react-redux';
+import { getOfferLocations} from '../../store/getters';
 
 interface ILocation {
     latitude: number;
@@ -14,12 +16,14 @@ interface IProps {
     name: string;
     location: ILocation;
   };
-  locations?: ILocation[];
   heightStyle: string;
 }
 
-export const Map = ({city, locations, heightStyle}: IProps) => {
+
+export const Map = ({city, heightStyle}: IProps) => {
   const mapContainer = useRef(null);
+  const locations = useSelector(getOfferLocations);
+
   useEffect(() => {
     if (mapContainer.current) {
       const map = new maplibregl.Map({

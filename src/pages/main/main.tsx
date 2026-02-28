@@ -1,19 +1,16 @@
-import {useState} from 'react';
 import {IOffer} from '../../types/types';
 import {CardList} from '../../components/card-list/card-list';
 import {MainTabs} from '../../components/main-tabs/main-tabs';
 import {MapBox} from '../../components/map-box/map-box';
+import {RootState} from '../../store/store';
+import {useSelector} from 'react-redux';
 
 interface IProps {
   offers: IOffer[];
 }
 
 export const Main = ({offers}:IProps) => {
-  const [activeTab, setActiveTab] = useState('Amsterdam');
-
-  const handlerTabClick = (data: string) => {
-    setActiveTab(data);
-  };
+  const activeTab = useSelector((state: RootState) => state.location.town);
 
   return (
     <>
@@ -71,7 +68,7 @@ export const Main = ({offers}:IProps) => {
           <h1 className="visually-hidden">Cities</h1>
           <div className="tabs">
             <section className="locations container">
-              <MainTabs handleChangeTown={handlerTabClick}/>
+              <MainTabs/>
             </section>
           </div>
           <div className="cities">
@@ -104,6 +101,4 @@ export const Main = ({offers}:IProps) => {
       </div>
     </>
   );
-
-
 };

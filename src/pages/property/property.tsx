@@ -10,7 +10,7 @@ interface IProps {
 
 
 export const Property = ({offers}: IProps) => {
-  const neigthbor = offers.slice(0, 3);
+  const neighbor = offers.slice(0, 3);
   return (
     <>
       <div style={{display: 'none'}}>
@@ -196,7 +196,7 @@ export const Property = ({offers}: IProps) => {
             <section className="near-places places">
               <h2 className="near-places__title">Other places in the neighbourhood</h2>
               <div className="near-places__list places__list">
-                <CardList offers={neigthbor}/>
+                <CardList offers={neighbor}/>
               </div>
             </section>
           </div>
