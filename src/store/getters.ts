@@ -10,3 +10,8 @@ export const getCityCenter = (state:RootState) => {
   const currentTown = state.location.offers.find((location) => location.city.name === state.location.town);
   return currentTown?.city.location;
 };
+
+// export const getOffersCount = (state: RootState) => {
+//   const currentTown = state.location.offers.find((location) => location.city.name === state.location.town);
+//   return state;
+// };

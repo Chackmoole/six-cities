@@ -2,15 +2,17 @@ import {IOffer} from '../../types/types';
 import {CardList} from '../../components/card-list/card-list';
 import {MainTabs} from '../../components/main-tabs/main-tabs';
 import {MapBox} from '../../components/map-box/map-box';
-import {RootState} from '../../store/store';
 import {useSelector} from 'react-redux';
+import {getActiveTown, getOfferLocations} from '../../store/getters';
 
 interface IProps {
   offers: IOffer[];
 }
 
 export const Main = ({offers}:IProps) => {
-  const activeTab = useSelector((state: RootState) => state.location.town);
+  const offersCount = useSelector(getOfferLocations).length;
+  const activeTown = useSelector(getActiveTown);
+  const isOneOffer = () => offersCount === 1;
 
   return (
     <>
@@ -75,7 +77,10 @@ export const Main = ({offers}:IProps) => {
             <div className="cities__places-container container">
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
-                <b className="places__found">312 places to stay in Amsterdam</b>
+                {
+                  isOneOffer() ? <b className="places__found">{offersCount} place to stay in {activeTown}</b> : <b className="places__found">{offersCount} places to stay in {activeTown}</b>
+                }
+
                 <form className="places__sorting" action="#" method="get">
                   <span className="places__sorting-caption">Sort by</span>
                   <span className="places__sorting-type" tabIndex={0}>
@@ -93,7 +98,7 @@ export const Main = ({offers}:IProps) => {
                 </form>
                 <CardList offers={offers}/>
               </section>
-              <MapBox activeTab={activeTab}/>
+              <MapBox/>
             </div>
           </div>
         </main>
