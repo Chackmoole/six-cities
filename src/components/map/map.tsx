@@ -3,34 +3,26 @@ import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import iconMarker from '../../assets/img/pin.svg';
 import {useSelector} from 'react-redux';
-import { getOfferLocations} from '../../store/getters';
-
-interface ILocation {
-    latitude: number;
-    longitude: number;
-    zoom: number;
-}
+import {getActiveTown, getCityCenter, getOfferLocations} from '../../store/getters';
 
 interface IProps {
-  city: {
-    name: string;
-    location: ILocation;
-  };
   heightStyle: string;
 }
 
 
-export const Map = ({city, heightStyle}: IProps) => {
+export const Map = ({ heightStyle}: IProps) => {
   const mapContainer = useRef(null);
+  const activeTown = useSelector(getActiveTown);
   const locations = useSelector(getOfferLocations);
+  const cityCentre = useSelector(getCityCenter);
 
   useEffect(() => {
-    if (mapContainer.current) {
+    if (mapContainer.current && cityCentre) {
       const map = new maplibregl.Map({
         container: mapContainer.current,
         style: 'https://tiles.openfreemap.org/styles/bright',
-        center: [city.location.longitude, city.location.latitude],
-        zoom: city.location.zoom,
+        center: [cityCentre.longitude, cityCentre.latitude],
+        zoom: cityCentre.zoom,
       });
       if (locations){ locations.map((location) => {
         const marker = document.createElement('div');
@@ -44,7 +36,7 @@ export const Map = ({city, heightStyle}: IProps) => {
 
 
     }
-  }, [city]);
+  }, [activeTown, cityCentre, locations]);
 
   return (
     <div
