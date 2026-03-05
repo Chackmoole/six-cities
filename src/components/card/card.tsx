@@ -11,7 +11,6 @@ export const Card = ({offer, handleSetActiveOffer, handleUnSetActiveOffer}:IProp
 ) => {
   const MAX_PERCENT = 100;
   const MAX_STARS = 5;
-
   return (
     <article className="cities__place-card place-card" onMouseMove={() => handleSetActiveOffer(offer.id)} onMouseLeave={handleUnSetActiveOffer}>
       {offer.isPremium ?

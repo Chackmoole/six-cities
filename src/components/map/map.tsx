@@ -15,7 +15,6 @@ export const Map = ({ heightStyle}: IProps) => {
   const activeTown = useSelector(getActiveTown);
   const locations = useSelector(getOfferLocations);
   const cityCentre = useSelector(getCityCenter);
-
   useEffect(() => {
     if (mapContainer.current && cityCentre) {
       const map = new maplibregl.Map({

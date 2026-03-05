@@ -1,4 +1,3 @@
-import {IOffer} from '../../types/types';
 import {CardList} from '../../components/card-list/card-list';
 import {MainTabs} from '../../components/main-tabs/main-tabs';
 import {MapBox} from '../../components/map-box/map-box';
@@ -6,11 +5,7 @@ import {useSelector} from 'react-redux';
 import {getActiveTown, getOfferLocations} from '../../store/getters';
 import {Sort} from '../../components/sort/sort';
 
-interface IProps {
-  offers: IOffer[];
-}
-
-export const Main = ({offers}:IProps) => {
+export const Main = () => {
   const offersCount = useSelector(getOfferLocations).length;
   const activeTown = useSelector(getActiveTown);
   const isOneOffer = () => offersCount === 1;
@@ -83,7 +78,7 @@ export const Main = ({offers}:IProps) => {
                 }
 
                 <Sort/>
-                <CardList offers={offers}/>
+                <CardList/>
               </section>
               <MapBox/>
             </div>

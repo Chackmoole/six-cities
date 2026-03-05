@@ -1,17 +1,13 @@
-import {IOffer} from '../../types/types';
 import {PropertyReviews} from '../../components/property-reviews/property-reviews';
 import {reviews} from '../../mock/reviews';
 import {PropertyMap} from '../../components/property-map/property-map';
 import {CardList} from '../../components/card-list/card-list';
 
-interface IProps {
-  offers: IOffer[];
-}
 
-
-export const Property = ({offers}: IProps) => {
-  const neighbor = offers.slice(0, 3);
-  return (
+export const Property = () =>
+  //TODO
+  // const neighbor = offers.slice(0, 3);
+  (
     <>
       <div style={{display: 'none'}}>
         <svg xmlns="http://www.w3.org/2000/svg">
@@ -196,7 +192,7 @@ export const Property = ({offers}: IProps) => {
             <section className="near-places places">
               <h2 className="near-places__title">Other places in the neighbourhood</h2>
               <div className="near-places__list places__list">
-                <CardList offers={neighbor}/>
+                <CardList/>
               </div>
             </section>
           </div>
@@ -204,5 +200,3 @@ export const Property = ({offers}: IProps) => {
       </div>
     </>);
 
-
-};
