@@ -3,17 +3,32 @@ import {Card} from '../card/card';
 import {useState} from 'react';
 import {useSelector} from 'react-redux';
 import {getOffers, getSorting} from '../../store/getters';
+// import iconMarkerActive from '../../assets/img/pin-active.svg';
+// import iconMarker from '../../assets/img/pin.svg';
 
 
 export const CardList = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [activeOffer, setActiveOffer ] = useState<number | null>(null);
+  const [activeOffer, setActiveOffer ] = useState<string>('');
+  // let hoverOffer = document.getElementById(`${activeOffer}`);
   const handleSetActiveOffer = (id : number) => {
-    setActiveOffer(id);
+    setActiveOffer(`marker-${id}`);
   };
+  //TODO доделать смену маркера при наведении на карточку
   const handleUnSetActiveOffer = () => {
-    setActiveOffer(null);
+    setActiveOffer('');
+    // if (hoverOffer) {
+    //   hoverOffer.style.backgroundImage = `url(${iconMarker})`;
+    // }
+  //
   };
+  // useEffect(() =>{
+  //   if(hoverOffer) {
+  //     hoverOffer = document.getElementById(`${activeOffer}`);
+  //     hoverOffer.style.backgroundImage = `url(${iconMarkerActive})`;
+  //
+  //   }
+  // });
   const sortMethod = useSelector(getSorting);
   const offers = useSelector(getOffers);
 
