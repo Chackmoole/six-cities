@@ -2,46 +2,41 @@ import {useRef, useEffect} from 'react';
 import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import iconMarker from '../../assets/img/pin.svg';
-
-interface ILocation {
-    latitude: number;
-    longitude: number;
-    zoom: number;
-}
+import {useSelector} from 'react-redux';
+import {getActiveTown, getCityCenter, getOffersByTown} from '../../store/getters';
 
 interface IProps {
-  city: {
-    name: string;
-    location: ILocation;
-  };
-  locations?: ILocation[];
   heightStyle: string;
 }
 
-export const Map = ({city, locations, heightStyle}: IProps) => {
+
+export const Map = ({ heightStyle}: IProps) => {
   const mapContainer = useRef(null);
+  const activeTown = useSelector(getActiveTown);
+  const offers = useSelector(getOffersByTown);
+  const cityCentre = useSelector(getCityCenter);
   useEffect(() => {
-    if (mapContainer.current) {
+    if (mapContainer.current && cityCentre) {
       const map = new maplibregl.Map({
         container: mapContainer.current,
         style: 'https://tiles.openfreemap.org/styles/bright',
-        center: [city.location.longitude, city.location.latitude],
-        zoom: city.location.zoom,
+        center: [cityCentre.longitude, cityCentre.latitude],
+        zoom: cityCentre.zoom,
       });
-      if (locations){ locations.map((location) => {
+      if (offers){ offers.forEach((offer) => {
         const marker = document.createElement('div');
         marker.style.backgroundImage = `url(${iconMarker})`;
         marker.style.width = '27px';
         marker.style.height = '39px';
         marker.style.cursor = 'pointer';
+        marker.id = `marker-${offer.id}`;
 
-        new maplibregl.Marker({element: marker}).setLngLat([location.longitude, location.latitude]).addTo(map);
+        new maplibregl.Marker({element: marker}).setLngLat([offer.location.longitude, offer.location.latitude]).addTo(map);
       });}
 
 
     }
-  }, [city]);
-
+  }, [activeTown, cityCentre, offers]);
   return (
     <div
       ref={mapContainer}
