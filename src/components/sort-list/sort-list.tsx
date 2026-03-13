@@ -1,5 +1,5 @@
 import {useDispatch, useSelector} from 'react-redux';
-import {sortOffers} from '../../store/locationSlice';
+import {setSortingValue} from '../../store/locationSlice';
 import {getSorting} from '../../store/getters';
 interface IProps {
   isVisible: boolean;
@@ -10,17 +10,17 @@ export const SortList = ({isVisible}:IProps) => {
   const activeSorting = useSelector(getSorting);
 
   const handlePopular = () => {
-    dispatch(sortOffers('popular'));
+    dispatch(setSortingValue('popular'));
   };
   const handleLowToHigh = () => {
-    dispatch(sortOffers('lowToHigh'));
+    dispatch(setSortingValue('lowToHigh'));
   };
   const handleHighToLow = () => {
-    dispatch(sortOffers('highToLow'));
+    dispatch(setSortingValue('highToLow'));
 
   };
   const handleByRate = () => {
-    dispatch(sortOffers('byRate'));
+    dispatch(setSortingValue('byRate'));
   };
 
   return (
