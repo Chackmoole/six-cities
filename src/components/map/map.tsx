@@ -3,7 +3,7 @@ import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import iconMarker from '../../assets/img/pin.svg';
 import {useSelector} from 'react-redux';
-import {getActiveTown, getCityCenter, getOffers} from '../../store/getters';
+import {getActiveTown, getCityCenter, getOffersByTown} from '../../store/getters';
 
 interface IProps {
   heightStyle: string;
@@ -13,7 +13,7 @@ interface IProps {
 export const Map = ({ heightStyle}: IProps) => {
   const mapContainer = useRef(null);
   const activeTown = useSelector(getActiveTown);
-  const offers = useSelector(getOffers);
+  const offers = useSelector(getOffersByTown);
   const cityCentre = useSelector(getCityCenter);
   useEffect(() => {
     if (mapContainer.current && cityCentre) {
@@ -23,7 +23,7 @@ export const Map = ({ heightStyle}: IProps) => {
         center: [cityCentre.longitude, cityCentre.latitude],
         zoom: cityCentre.zoom,
       });
-      if (offers){ offers.map((offer) => {
+      if (offers){ offers.forEach((offer) => {
         const marker = document.createElement('div');
         marker.style.backgroundImage = `url(${iconMarker})`;
         marker.style.width = '27px';

@@ -2,7 +2,7 @@ import {IOffer} from '../../types/types';
 import {Card} from '../card/card';
 import {useState} from 'react';
 import {useSelector} from 'react-redux';
-import {getOffers} from '../../store/getters';
+import {getCurrentOffers} from '../../store/getters';
 // import iconMarkerActive from '../../assets/img/pin-active.svg';
 // import iconMarker from '../../assets/img/pin.svg';
 
@@ -22,7 +22,8 @@ export const CardList = () => {
     // }
   //
   };
-  const offers = useSelector(getOffers);
+
+  const offers = useSelector(getCurrentOffers);
   return (
     <div className="cities__places-list places__list tabs__content">
       {offers.map((offer:IOffer) => (<Card key={offer.id} offer={offer} handleSetActiveOffer={handleSetActiveOffer} handleUnSetActiveOffer={handleUnSetActiveOffer}/>))}
