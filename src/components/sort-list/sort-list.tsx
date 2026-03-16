@@ -1,6 +1,8 @@
 import {useDispatch, useSelector} from 'react-redux';
 import {setSortingValue} from '../../store/locationSlice';
 import {getSorting} from '../../store/getters';
+import {sortingOptions} from '../../const/sort-options';
+
 interface IProps {
   isVisible: boolean;
 }
@@ -8,13 +10,6 @@ interface IProps {
 export const SortList = ({isVisible}:IProps) => {
   const dispatch = useDispatch();
   const activeSorting = useSelector(getSorting);
-
-  const sortingOptions = [
-    {value: 'popular', label: 'Popular'},
-    {value: 'lowToHigh', label: 'Price: low to high'},
-    {value: 'highToLow', label: 'Price: high to low'},
-    {value: 'byRate', label: 'Top rated first'},
-  ];
   const handleOnChangeOption = (value:string) => dispatch(setSortingValue(value));
 
   return (
