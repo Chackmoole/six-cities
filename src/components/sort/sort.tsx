@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {SortList} from '../sort-list/sort-list';
 import {useSelector} from 'react-redux';
-import {getSorting} from '../../store/getters';
+import {getCurrentOptionLabel} from '../../store/getters';
 
 export const Sort = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -9,28 +9,12 @@ export const Sort = () => {
     setIsVisible(!isVisible);
   };
 
-  let sortingText = '';
-  switch (useSelector(getSorting)) {
-    case 'popular':
-      sortingText = 'Popular';
-      break;
-    case 'lowToHigh':
-      sortingText = 'Price: low to high';
-      break;
-    case 'highToLow':
-      sortingText = 'Price: high to low';
-      break;
-    case 'byRate':
-      sortingText = 'Top rated first';
-      break;
-    default:
-      sortingText = 'Popular';
-  }
+  const currentSorting = useSelector(getCurrentOptionLabel);
   return(
     <form className="places__sorting" action="#" method="get" onClick={handleRender}>
       <span className="places__sorting-caption">Sort by</span>
       <span className="places__sorting-type" tabIndex={0}>
-        {sortingText}
+        {currentSorting}
         <svg className="places__sorting-arrow" width="7" height="4">
           <use xlinkHref="#icon-arrow-select"></use>
         </svg>

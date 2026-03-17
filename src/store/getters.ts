@@ -1,5 +1,6 @@
 import {RootState} from './store';
 import {createSelector} from '@reduxjs/toolkit';
+import {sortingOptions} from '../const/sort-options';
 
 const getOffers = (state: RootState)=> state.location.offers;
 export const getActiveTown = (state: RootState) => state.location.town;
@@ -42,4 +43,9 @@ export const getCurrentOffers = createSelector(
     }
     return offers;
   }
+);
+
+export const getCurrentOptionLabel = createSelector(
+  [getSorting],
+  (sort) => sortingOptions.find((option) => option.value === sort)?.label
 );
