@@ -2,14 +2,15 @@ import {CardList} from '../../components/card-list/card-list';
 import {MainTabs} from '../../components/main-tabs/main-tabs';
 import {MapBox} from '../../components/map-box/map-box';
 import {useSelector} from 'react-redux';
-import {getActiveTown, getOfferLocations} from '../../store/getters';
+import {getActiveTown, getCurrentOffers, getOfferLocations} from '../../store/getters';
 import {Sort} from '../../components/sort/sort';
 
 export const Main = () => {
   const offersCount = useSelector(getOfferLocations).length;
   const activeTown = useSelector(getActiveTown);
   const isOneOffer = () => offersCount === 1;
-
+  const offers = useSelector(getCurrentOffers);
+  // console.log(offers);
   return (
     <>
       <div style={{display: 'none'}}>
@@ -78,7 +79,7 @@ export const Main = () => {
                 }
 
                 <Sort/>
-                <CardList/>
+                <CardList offers={offers}/>
               </section>
               <MapBox/>
             </div>
