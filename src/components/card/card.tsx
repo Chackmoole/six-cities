@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 interface IProps {
   offer: IOffer;
   handleSetActiveOffer: (id: number) => void;
-  handleUnSetActiveOffer: () => void;
+  handleUnSetActiveOffer: (id: number) => void;
 }
 
 export const Card = ({offer, handleSetActiveOffer, handleUnSetActiveOffer}:IProps
@@ -12,7 +12,7 @@ export const Card = ({offer, handleSetActiveOffer, handleUnSetActiveOffer}:IProp
   const MAX_PERCENT = 100;
   const MAX_STARS = 5;
   return (
-    <article className="cities__place-card place-card" onMouseEnter={() => handleSetActiveOffer(offer.id)} onMouseLeave={handleUnSetActiveOffer}>
+    <article className="cities__place-card place-card" onMouseEnter={() => handleSetActiveOffer(offer.id)} onMouseLeave={() => handleUnSetActiveOffer((offer.id))}>
       {offer.isPremium ?
         <div className="place-card__mark">
           <span>Premium</span>

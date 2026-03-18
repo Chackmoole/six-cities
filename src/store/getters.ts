@@ -5,6 +5,8 @@ import {sortingOptions} from '../const/sort-options';
 const getOffers = (state: RootState)=> state.location.offers;
 export const getActiveTown = (state: RootState) => state.location.town;
 export const getSorting = (state : RootState) => state.location.sorting;
+export const getActiveHoverOffer = (state:RootState) => state.location.activeHoverOffer;
+
 
 export const getOfferLocations = createSelector(
   [getOffers, getActiveTown],
@@ -49,3 +51,4 @@ export const getCurrentOptionLabel = createSelector(
   [getSorting],
   (sort) => sortingOptions.find((option) => option.value === sort)?.label
 );
+
