@@ -1,16 +1,12 @@
-import {IOffer} from '../../types/types';
 import {PropertyReviews} from '../../components/property-reviews/property-reviews';
 import {reviews} from '../../mock/reviews';
 import {PropertyMap} from '../../components/property-map/property-map';
 import {CardList} from '../../components/card-list/card-list';
-
-interface IProps {
-  offers: IOffer[];
-}
+import {OFFERS} from '../../mock/offers';
 
 
-export const Property = ({offers}: IProps) => {
-  const neigthbor = offers.slice(0, 3);
+export const Property = () => {
+  const neighbor = OFFERS.slice(0, 3);
   return (
     <>
       <div style={{display: 'none'}}>
@@ -94,7 +90,7 @@ export const Property = ({offers}: IProps) => {
                 </div>
                 <div className="property__name-wrapper">
                   <h1 className="property__name">
-                  Beautiful &amp; luxurious studio at great location
+                    Beautiful &amp; luxurious studio at great location
                   </h1>
                   <button className="property__bookmark-button button" type="button">
                     <svg className="property__bookmark-icon" width="31" height="33">
@@ -112,13 +108,13 @@ export const Property = ({offers}: IProps) => {
                 </div>
                 <ul className="property__features">
                   <li className="property__feature property__feature--entire">
-                  Apartment
+                    Apartment
                   </li>
                   <li className="property__feature property__feature--bedrooms">
-                  3 Bedrooms
+                    3 Bedrooms
                   </li>
                   <li className="property__feature property__feature--adults">
-                  Max 4 adults
+                    Max 4 adults
                   </li>
                 </ul>
                 <div className="property__price">
@@ -129,34 +125,34 @@ export const Property = ({offers}: IProps) => {
                   <h2 className="property__inside-title">What&apos;s inside</h2>
                   <ul className="property__inside-list">
                     <li className="property__inside-item">
-                    Wi-Fi
+                      Wi-Fi
                     </li>
                     <li className="property__inside-item">
-                    Washing machine
+                      Washing machine
                     </li>
                     <li className="property__inside-item">
-                    Towels
+                      Towels
                     </li>
                     <li className="property__inside-item">
-                    Heating
+                      Heating
                     </li>
                     <li className="property__inside-item">
-                    Coffee machine
+                      Coffee machine
                     </li>
                     <li className="property__inside-item">
-                    Baby seat
+                      Baby seat
                     </li>
                     <li className="property__inside-item">
-                    Kitchen
+                      Kitchen
                     </li>
                     <li className="property__inside-item">
-                    Dishwasher
+                      Dishwasher
                     </li>
                     <li className="property__inside-item">
-                    Cabel TV
+                      Cabel TV
                     </li>
                     <li className="property__inside-item">
-                    Fridge
+                      Fridge
                     </li>
                   </ul>
                 </div>
@@ -178,12 +174,12 @@ export const Property = ({offers}: IProps) => {
                   </div>
                   <div className="property__description">
                     <p className="property__text">
-                    A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The
-                    building is green and from 18th century.
+                      A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The
+                      building is green and from 18th century.
                     </p>
                     <p className="property__text">
-                    An independent House, strategically located between Rembrand Square and National Opera, but where
-                    the bustle of the city comes to rest in this alley flowery and colorful.
+                      An independent House, strategically located between Rembrand Square and National Opera, but where
+                      the bustle of the city comes to rest in this alley flowery and colorful.
                     </p>
                   </div>
                 </div>
@@ -196,13 +192,11 @@ export const Property = ({offers}: IProps) => {
             <section className="near-places places">
               <h2 className="near-places__title">Other places in the neighbourhood</h2>
               <div className="near-places__list places__list">
-                <CardList offers={neigthbor}/>
+                <CardList offers={neighbor}/>
               </div>
             </section>
           </div>
         </main>
       </div>
     </>);
-
-
 };

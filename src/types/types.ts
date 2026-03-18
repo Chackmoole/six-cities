@@ -62,3 +62,8 @@ export interface IReview {
   rating: number;
   user: IUserReview;
 }
+
+export interface ISortOption {
+  value: string;
+  label: string;
+}
