@@ -1,20 +1,16 @@
-import {useState} from 'react';
-import {IOffer} from '../../types/types';
 import {CardList} from '../../components/card-list/card-list';
 import {MainTabs} from '../../components/main-tabs/main-tabs';
 import {MapBox} from '../../components/map-box/map-box';
+import {useSelector} from 'react-redux';
+import {getActiveTown, getCurrentOffers, getOfferLocations} from '../../store/getters';
+import {Sort} from '../../components/sort/sort';
 
-interface IProps {
-  offers: IOffer[];
-}
-
-export const Main = ({offers}:IProps) => {
-  const [activeTab, setActiveTab] = useState('Amsterdam');
-
-  const handlerTabClick = (data: string) => {
-    setActiveTab(data);
-  };
-
+export const Main = () => {
+  const offersCount = useSelector(getOfferLocations).length;
+  const activeTown = useSelector(getActiveTown);
+  const isOneOffer = () => offersCount === 1;
+  const offers = useSelector(getCurrentOffers);
+  // console.log(offers);
   return (
     <>
       <div style={{display: 'none'}}>
@@ -71,32 +67,21 @@ export const Main = ({offers}:IProps) => {
           <h1 className="visually-hidden">Cities</h1>
           <div className="tabs">
             <section className="locations container">
-              <MainTabs handleChangeTown={handlerTabClick}/>
+              <MainTabs/>
             </section>
           </div>
           <div className="cities">
             <div className="cities__places-container container">
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
-                <b className="places__found">312 places to stay in Amsterdam</b>
-                <form className="places__sorting" action="#" method="get">
-                  <span className="places__sorting-caption">Sort by</span>
-                  <span className="places__sorting-type" tabIndex={0}>
-                  Popular
-                    <svg className="places__sorting-arrow" width="7" height="4">
-                      <use xlinkHref="#icon-arrow-select"></use>
-                    </svg>
-                  </span>
-                  <ul className="places__options places__options--custom places__options--opened">
-                    <li className="places__option places__option--active" tabIndex={0}>Popular</li>
-                    <li className="places__option" tabIndex={0}>Price: low to high</li>
-                    <li className="places__option" tabIndex={0}>Price: high to low</li>
-                    <li className="places__option" tabIndex={0}>Top rated first</li>
-                  </ul>
-                </form>
+                {
+                  isOneOffer() ? <b className="places__found">{offersCount} place to stay in {activeTown}</b> : <b className="places__found">{offersCount} places to stay in {activeTown}</b>
+                }
+
+                <Sort/>
                 <CardList offers={offers}/>
               </section>
-              <MapBox activeTab={activeTab}/>
+              <MapBox/>
             </div>
           </div>
         </main>
@@ -104,6 +89,4 @@ export const Main = ({offers}:IProps) => {
       </div>
     </>
   );
-
-
 };
