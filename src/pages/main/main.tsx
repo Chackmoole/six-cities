@@ -1,16 +1,35 @@
 import {CardList} from '../../components/card-list/card-list';
 import {MainTabs} from '../../components/main-tabs/main-tabs';
 import {MapBox} from '../../components/map-box/map-box';
-import {useSelector} from 'react-redux';
+import { useSelector} from 'react-redux';
 import {getActiveTown, getCurrentOffers, getOfferLocations} from '../../store/getters';
 import {Sort} from '../../components/sort/sort';
+import {useEffect} from 'react';
+import {fetchOffers} from '../../store/actions';
+import {useAppDispatch} from '../../store/hooks';
+
 
 export const Main = () => {
+  const dispatch = useAppDispatch();
+
   const offersCount = useSelector(getOfferLocations).length;
   const activeTown = useSelector(getActiveTown);
   const isOneOffer = () => offersCount === 1;
   const offers = useSelector(getCurrentOffers);
-  // console.log(offers);
+
+  // const getDataFromServer = () => {
+  //   fetch('https://10.react.htmlacademy.pro/six-cities/hotels').then((response) => response.json()).then((data: IOffer[])=> {
+  //     dispatch(setOffers(data));
+  //   });
+  // };
+
+
+  useEffect(() => {
+    // получаем данные с сервера
+    dispatch(fetchOffers());
+  },[dispatch]);
+
+
   return (
     <>
       <div style={{display: 'none'}}>
