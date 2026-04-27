@@ -17,13 +17,6 @@ export const Main = () => {
   const isOneOffer = () => offersCount === 1;
   const offers = useSelector(getCurrentOffers);
 
-  // const getDataFromServer = () => {
-  //   fetch('https://10.react.htmlacademy.pro/six-cities/hotels').then((response) => response.json()).then((data: IOffer[])=> {
-  //     dispatch(setOffers(data));
-  //   });
-  // };
-
-
   useEffect(() => {
     // получаем данные с сервера
     dispatch(fetchOffers());
