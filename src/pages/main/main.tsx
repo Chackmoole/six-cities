@@ -10,7 +10,6 @@ export const Main = () => {
   const activeTown = useSelector(getActiveTown);
   const isOneOffer = () => offersCount === 1;
   const offers = useSelector(getCurrentOffers);
-  // console.log(offers);
   return (
     <>
       <div style={{display: 'none'}}>
