@@ -1,15 +1,24 @@
 import {CardList} from '../../components/card-list/card-list';
 import {MainTabs} from '../../components/main-tabs/main-tabs';
 import {MapBox} from '../../components/map-box/map-box';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {getActiveTown, getCurrentOffers, getOfferLocations} from '../../store/getters';
 import {Sort} from '../../components/sort/sort';
+import {useEffect} from 'react';
+import {fetchOffers} from '../../store/actions';
 
 export const Main = () => {
   const offersCount = useSelector(getOfferLocations).length;
   const activeTown = useSelector(getActiveTown);
   const isOneOffer = () => offersCount === 1;
   const offers = useSelector(getCurrentOffers);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchOffers())
+  }, [dispatch])
+
   return (
     <>
       <div style={{display: 'none'}}>
