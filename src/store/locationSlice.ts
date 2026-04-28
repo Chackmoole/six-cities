@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import {OFFERS} from '../mock/offers';
 import {IOffer} from '../types/types';
+import {fetchOffers} from './actions';
 
 interface ITownState {
   town: string;
@@ -12,7 +12,7 @@ interface ITownState {
 
 const initialState: ITownState = {
   town: 'Paris',
-  offers: OFFERS,
+  offers: [],
   sorting: 'popular',
   activeHoverOffer: null,
 };
@@ -26,7 +26,11 @@ const locationSlice = createSlice({
     setSortingValue: (state, action:PayloadAction<string>) => {state.sorting = action.payload;},
     setActiveHoverOffer: (state, action:PayloadAction<number | null>) => {state.activeHoverOffer = action.payload;},
   },
-
+  extraReducers: (builder) => {
+    builder.addCase(fetchOffers.fulfilled, (state , action) => {
+      state.offers = action.payload;
+    });
+  }
 });
 
 export const {setActiveTown, setSortingValue, setActiveHoverOffer} = locationSlice.actions;

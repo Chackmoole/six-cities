@@ -17,8 +17,8 @@ export const Main = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchOffers())
-  }, [dispatch])
+    dispatch(fetchOffers());
+  }, [dispatch]);
 
   return (
     <>
