@@ -2,23 +2,26 @@ import {CardList} from '../../components/card-list/card-list';
 import {MainTabs} from '../../components/main-tabs/main-tabs';
 import {MapBox} from '../../components/map-box/map-box';
 import {useSelector} from 'react-redux';
-import {getActiveTown, getCurrentOffers, getOfferLocations} from '../../store/getters';
+import {getActiveTown, getCurrentOffers, getOfferLocations, getStatusOffersLoaded} from '../../store/getters';
 import {Sort} from '../../components/sort/sort';
 import {useEffect} from 'react';
 import {fetchOffers} from '../../store/actions';
-import {useAppDispatch} from '../../store/hooks';
+import {useAppDispatch, useAppSelector} from '../../store/hooks';
+import {Spinner} from '../../components/spinner/spinner';
 
 export const Main = () => {
   const offersCount = useSelector(getOfferLocations).length;
   const activeTown = useSelector(getActiveTown);
   const isOneOffer = () => offersCount === 1;
   const offers = useSelector(getCurrentOffers);
-
+  const isSstatusOffersLoaded = useAppSelector(getStatusOffersLoaded);
   const dispatch = useAppDispatch();
+
 
   useEffect(() => {
     dispatch(fetchOffers());
   }, [dispatch]);
+
 
   return (
     <>
@@ -71,7 +74,6 @@ export const Main = () => {
             </div>
           </div>
         </header>
-
         <main className="page__main page__main--index">
           <h1 className="visually-hidden">Cities</h1>
           <div className="tabs">
@@ -79,22 +81,24 @@ export const Main = () => {
               <MainTabs/>
             </section>
           </div>
-          <div className="cities">
-            <div className="cities__places-container container">
-              <section className="cities__places places">
-                <h2 className="visually-hidden">Places</h2>
-                {
-                  isOneOffer() ? <b className="places__found">{offersCount} place to stay in {activeTown}</b> : <b className="places__found">{offersCount} places to stay in {activeTown}</b>
-                }
+          {
+            isSstatusOffersLoaded === 'pending' ? <Spinner/> :
 
-                <Sort/>
-                <CardList offers={offers}/>
-              </section>
-              <MapBox/>
-            </div>
-          </div>
+              <div className="cities">
+                <div className="cities__places-container container">
+                  <section className="cities__places places">
+                    <h2 className="visually-hidden">Places</h2>
+                    {
+                      isOneOffer() ? <b className="places__found">{offersCount} place to stay in {activeTown}</b> : <b className="places__found">{offersCount} places to stay in {activeTown}</b>
+                    }
+                    <Sort/>
+                    <CardList offers={offers}/>
+                  </section>
+                  <MapBox/>
+                </div>
+              </div>
+          }
         </main>
-
       </div>
     </>
   );
