@@ -14,10 +14,11 @@ export const Main = () => {
   const activeTown = useSelector(getActiveTown);
   const isOneOffer = () => offersCount === 1;
   const offers = useSelector(getCurrentOffers);
-  const isSstatusOffersLoaded = useAppSelector(getStatusOffersLoaded);
+  const statusOffersLoaded = useAppSelector(getStatusOffersLoaded);
   const dispatch = useAppDispatch();
-
-
+  const isDataLoading = (statusOffersLoaded === 'idle' || statusOffersLoaded === 'pending');
+  const isDataLoaded = (statusOffersLoaded === 'fulfilled');
+  const isDataRejected = statusOffersLoaded === 'rejected';
   useEffect(() => {
     dispatch(fetchOffers());
   }, [dispatch]);
@@ -82,8 +83,10 @@ export const Main = () => {
             </section>
           </div>
           {
-            isSstatusOffersLoaded === 'pending' ? <Spinner/> :
-
+            isDataLoading ? <Spinner/> : null
+          }
+          {
+            isDataLoaded ?
               <div className="cities">
                 <div className="cities__places-container container">
                   <section className="cities__places places">
@@ -96,7 +99,10 @@ export const Main = () => {
                   </section>
                   <MapBox/>
                 </div>
-              </div>
+              </div> : null
+          }
+          {
+            isDataRejected ? <p>Кажется что-то пошло не так. Попробуйте позднее</p> : null
           }
         </main>
       </div>
