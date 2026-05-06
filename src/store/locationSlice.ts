@@ -9,6 +9,7 @@ interface ITownState {
   sorting: string;
   activeHoverOffer: number | null ;
   statusOffersLoaded: 'idle' | 'pending' | 'fulfilled' | 'rejected';
+  authorizationStatus: 'auth' | 'noAuth' | 'unknown';
 }
 
 const initialState: ITownState = {
@@ -17,6 +18,7 @@ const initialState: ITownState = {
   sorting: 'popular',
   activeHoverOffer: null,
   statusOffersLoaded: 'idle',
+  authorizationStatus: 'unknown',
 };
 
 const locationSlice = createSlice({
