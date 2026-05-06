@@ -67,3 +67,5 @@ export interface ISortOption {
   value: string;
   label: string;
 }
+
+export type IAuthorizationStatus = 'auth' | 'noAuth' | 'unknown';

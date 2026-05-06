@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import {IOffer} from '../types/types';
+import {IAuthorizationStatus, IOffer} from '../types/types';
 import {fetchOffers} from './actions';
 
 interface ITownState {
@@ -9,7 +9,7 @@ interface ITownState {
   sorting: string;
   activeHoverOffer: number | null ;
   statusOffersLoaded: 'idle' | 'pending' | 'fulfilled' | 'rejected';
-  authorizationStatus: 'auth' | 'noAuth' | 'unknown';
+  authorizationStatus: IAuthorizationStatus;
 }
 
 const initialState: ITownState = {
@@ -29,6 +29,7 @@ const locationSlice = createSlice({
     setOffers: (state, action:PayloadAction<IOffer[]>) => {state.offers = action.payload;},
     setSortingValue: (state, action:PayloadAction<string>) => {state.sorting = action.payload;},
     setActiveHoverOffer: (state, action:PayloadAction<number | null>) => {state.activeHoverOffer = action.payload;},
+    setAuthorizationStatus: (state, action:PayloadAction<IAuthorizationStatus>) => {state.authorizationStatus = action.payload;},
   },
   extraReducers: (builder) => {
     builder.addCase(fetchOffers.pending, (state, action) => {
