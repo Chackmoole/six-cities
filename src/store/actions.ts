@@ -9,3 +9,11 @@ export const fetchOffers = createAsyncThunk (
     return response.data;
   }
 );
+
+export const fetchAuth = createAsyncThunk(
+  'fetchAuth',
+  async (): Promise<number> => {
+    const response = await createAPI().get<number>('/login');
+    return response.status;
+  }
+);
