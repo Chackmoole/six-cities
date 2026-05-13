@@ -5,7 +5,7 @@ import {useSelector} from 'react-redux';
 import {getActiveTown, getCurrentOffers, getOfferLocations, getStatusOffersLoaded} from '../../store/getters';
 import {Sort} from '../../components/sort/sort';
 import {useEffect} from 'react';
-import {fetchOffers} from '../../store/actions';
+import {fetchAuth, fetchOffers} from '../../store/actions';
 import {useAppDispatch, useAppSelector} from '../../store/hooks';
 import {Spinner} from '../../components/spinner/spinner';
 
@@ -21,6 +21,9 @@ export const Main = () => {
   const isDataRejected = statusOffersLoaded === 'rejected';
   useEffect(() => {
     dispatch(fetchOffers());
+  }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchAuth());
   }, [dispatch]);
 
 

@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import {IAuthorizationStatus, IOffer} from '../types/types';
-import {fetchOffers} from './actions';
+import {fetchAuth, fetchOffers} from './actions';
 
 interface ITownState {
   town: string;
@@ -10,6 +10,7 @@ interface ITownState {
   activeHoverOffer: number | null ;
   statusOffersLoaded: 'idle' | 'pending' | 'fulfilled' | 'rejected';
   authorizationStatus: IAuthorizationStatus;
+  user: string | number | null | undefined ;
 }
 
 const initialState: ITownState = {
@@ -19,6 +20,7 @@ const initialState: ITownState = {
   activeHoverOffer: null,
   statusOffersLoaded: 'idle',
   authorizationStatus: 'unknown',
+  user: '',
 };
 
 const locationSlice = createSlice({
@@ -41,6 +43,13 @@ const locationSlice = createSlice({
     });
     builder.addCase(fetchOffers.rejected, (state, action) => {
       state.statusOffersLoaded = 'rejected';
+    });
+    builder.addCase(fetchAuth.fulfilled, (state, action ) => {
+      state.user = action.payload;
+      state.authorizationStatus = 'auth';
+    });
+    builder.addCase(fetchAuth.rejected, (state, action) => {
+      state.authorizationStatus = 'noAuth';
     });
   }
 });
