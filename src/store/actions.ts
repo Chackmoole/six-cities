@@ -1,11 +1,11 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {IOffer} from '../types/types';
-import {createAPI} from '../services/api';
+import {api} from '../services/api';
 
 export const fetchOffers = createAsyncThunk (
   'fetchOffers',
   async (): Promise<IOffer[]> => {
-    const response = await createAPI().get<IOffer[]>('/hotels');
+    const response = await api.get<IOffer[]>('/hotels');
     return response.data;
   }
 );
@@ -13,7 +13,7 @@ export const fetchOffers = createAsyncThunk (
 export const fetchAuth = createAsyncThunk(
   'fetchAuth',
   async (): Promise<number> => {
-    const response = await createAPI().get<number>('/login');
+    const response = await api.get<number>('/login');
     return response.status;
   }
 );
