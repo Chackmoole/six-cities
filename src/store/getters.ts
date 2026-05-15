@@ -7,7 +7,7 @@ export const getActiveTown = (state: RootState) => state.location.town;
 export const getSorting = (state : RootState) => state.location.sorting;
 export const getActiveHoverOffer = (state:RootState) => state.location.activeHoverOffer;
 export const getStatusOffersLoaded = (state : RootState) => state.location.statusOffersLoaded;
-
+export const getAuthorizationStatus = (state : RootState) => state.location.authorizationStatus;
 
 export const getOfferLocations = createSelector(
   [getOffers, getActiveTown],
