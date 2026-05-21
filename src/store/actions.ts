@@ -6,7 +6,7 @@ import {getAuthFromServer} from '../api/auth';
 export const fetchOffers = createAsyncThunk (
   'fetchOffers',
   async (): Promise<IOffer[]> => {
-    const response = await getOffersFromServer;
+    const response = await getOffersFromServer();
     return response.data;
   }
 );
@@ -14,7 +14,9 @@ export const fetchOffers = createAsyncThunk (
 export const fetchAuth = createAsyncThunk(
   'fetchAuth',
   async (): Promise<number> => {
-    const response = await getAuthFromServer;
+    const response = await getAuthFromServer();
     return response.status;
   }
 );
+
+
