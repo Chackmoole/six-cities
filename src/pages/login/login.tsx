@@ -1,5 +1,5 @@
 import {Input} from '../../components/ui/input/input';
-import {useState} from 'react';
+import {FormEvent, useState} from 'react';
 
 export const Login = () => {
   const [email, setEmail] = useState('');
@@ -11,6 +11,10 @@ export const Login = () => {
     setPassword(value);
   };
 
+  const onSubmit = (event: FormEvent) => {
+    event.preventDefault();
+    console.log(email, password);
+  };
   return (
     <>
       <div style={{display: 'none'}}>
@@ -62,7 +66,7 @@ export const Login = () => {
                   <label className="visually-hidden">Password</label>
                   <Input className="login__input form__input" type="password" name="password" placeholder="Password" required={false} value={password} onInput={handlePassword}/>
                 </div>
-                <button className="login__submit form__submit button" type="submit">Sign in</button>
+                <button className="login__submit form__submit button" type="submit" onClick={onSubmit}>Sign in</button>
               </form>
             </section>
             <section className="locations locations--login locations--current">
