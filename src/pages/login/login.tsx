@@ -6,6 +6,10 @@ export const Login = () => {
   const handleEmail = (value: string) => {
     setEmail(value);
   };
+  const [password, setPassword] = useState('');
+  const handlePassword = (value: string) => {
+    setPassword(value);
+  };
 
   return (
     <>
@@ -56,10 +60,7 @@ export const Login = () => {
                 </div>
                 <div className="login__input-wrapper form__input-wrapper">
                   <label className="visually-hidden">Password</label>
-                  <input
-                    className="login__input form__input" type="password" name="password" placeholder="Password"
-                    required={false}
-                  />
+                  <Input className="login__input form__input" type="password" name="password" placeholder="Password" required={false} value={password} onInput={handlePassword}/>
                 </div>
                 <button className="login__submit form__submit button" type="submit">Sign in</button>
               </form>
