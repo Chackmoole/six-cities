@@ -1,19 +1,13 @@
-import {Input} from '../../components/ui/input/input';
 import {FormEvent, useState} from 'react';
 
 export const Login = () => {
   const [email, setEmail] = useState('');
-  const handleEmail = (value: string) => {
-    setEmail(value);
-  };
   const [password, setPassword] = useState('');
-  const handlePassword = (value: string) => {
-    setPassword(value);
-  };
+
 
   const onSubmit = (event: FormEvent) => {
     event.preventDefault();
-    console.log(email, password);
+    //console.log(email, password);
   };
   return (
     <>
@@ -58,13 +52,13 @@ export const Login = () => {
               <form className="login__form form" action="#" method="post">
                 <div className="login__input-wrapper form__input-wrapper">
                   <label className="visually-hidden">E-mail</label>
-                  <Input
-                    className="login__input form__input" type="email" name="email" placeholder="Email" required={false} value={email} onInput={handleEmail}
+                  <input
+                    className="login__input form__input" type="email" name="email" placeholder="Email" required={false} value={email} onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
                 <div className="login__input-wrapper form__input-wrapper">
                   <label className="visually-hidden">Password</label>
-                  <Input className="login__input form__input" type="password" name="password" placeholder="Password" required={false} value={password} onInput={handlePassword}/>
+                  <input className="login__input form__input" type="password" name="password" placeholder="Password" required={false} value={password} onChange={(e) => setPassword(e.target.value)}/>
                 </div>
                 <button className="login__submit form__submit button" type="submit" onClick={onSubmit}>Sign in</button>
               </form>
