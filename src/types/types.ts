@@ -69,3 +69,12 @@ export interface ISortOption {
 }
 
 export type IAuthorizationStatus = 'auth' | 'noAuth' | 'unknown';
+
+export interface IAuth {
+  avatarUrl: string;
+  email: string;
+  id: number;
+  isPro: boolean;
+  name: string;
+  token: string;
+}
