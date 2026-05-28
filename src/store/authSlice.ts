@@ -1,5 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {loginUser} from '../api/auth';
+import {postAuth} from './actions';
 
 interface IAuthState {
   token: string | null;
@@ -21,18 +21,18 @@ const authSlice = createSlice({
   reducers:{},
   extraReducers: (builder) => {
     builder
-      .addCase(loginUser.pending, (state) => {
+      .addCase(postAuth.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(loginUser.fulfilled, (state, action) => {
+      .addCase(postAuth.fulfilled, (state, action) => {
         state.loading = false;
         state.token = action.payload.token;
-        state.user = action.payload.user;
+        state.user = action.payload;
       })
-      .addCase(loginUser.rejected, (state, action) => {
+      .addCase(postAuth.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload || 'Неизвестная ошибка';
+        state.error = 'Неизвестная ошибка';
       });
   },
 });

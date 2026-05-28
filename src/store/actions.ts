@@ -1,7 +1,7 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {IOffer} from '../types/types';
 import {getOffersFromServer} from '../api/hotels';
-import {getAuthFromServer} from '../api/auth';
+import {getAuthFromServer, ILoginPayload, ILoginResponse, loginUser} from '../api/auth';
 
 export const fetchOffers = createAsyncThunk (
   'fetchOffers',
@@ -19,4 +19,10 @@ export const fetchAuth = createAsyncThunk(
   }
 );
 
-
+export const postAuth = createAsyncThunk<ILoginResponse, ILoginPayload>
+('auth/login',
+  async (body, ) => {
+    const response = await loginUser(body);
+    return response.data;
+  }
+);

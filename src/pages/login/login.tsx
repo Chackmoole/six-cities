@@ -1,13 +1,16 @@
 import {FormEvent, useState} from 'react';
+// import {postAuth} from '../../store/actions';
+// import {useAppDispatch} from '../../store/hooks';
 
 export const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  // const dispatch = useAppDispatch();
 
-
-  const onSubmit = (event: FormEvent) => {
+  const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-    //console.log(email, password);
+    // dispatch(postAuth({avatarUrl: '', id: 0, isPro: false, name: '', token: '', email}));
+    console.log(email, password);
   };
   return (
     <>
@@ -49,7 +52,7 @@ export const Login = () => {
           <div className="page__login-container container">
             <section className="login">
               <h1 className="login__title">Sign in</h1>
-              <form className="login__form form" action="#" method="post">
+              <form className="login__form form" action="#" method="post" onSubmit={handleSubmit}>
                 <div className="login__input-wrapper form__input-wrapper">
                   <label className="visually-hidden">E-mail</label>
                   <input
@@ -60,7 +63,7 @@ export const Login = () => {
                   <label className="visually-hidden">Password</label>
                   <input className="login__input form__input" type="password" name="password" placeholder="Password" required={false} value={password} onChange={(e) => setPassword(e.target.value)}/>
                 </div>
-                <button className="login__submit form__submit button" type="submit" onClick={onSubmit}>Sign in</button>
+                <button className="login__submit form__submit button" type="submit">Sign in</button>
               </form>
             </section>
             <section className="locations locations--login locations--current">
