@@ -1,17 +1,18 @@
 import {FormEvent, useState} from 'react';
-// import {postAuth} from '../../store/actions';
-// import {useAppDispatch} from '../../store/hooks';
+import {postAuth} from '../../store/actions';
+import {useAppDispatch} from '../../store/hooks';
 
 export const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  // const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-    // dispatch(postAuth({avatarUrl: '', id: 0, isPro: false, name: '', token: '', email}));
-    console.log(email, password);
+    dispatch(postAuth({ email, password }));
   };
+
+
   return (
     <>
       <div style={{display: 'none'}}>

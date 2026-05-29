@@ -1,5 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {postAuth} from './actions';
+import {setToken} from '../services/token';
 
 interface IAuthState {
   token: string | null;
@@ -28,6 +29,7 @@ const authSlice = createSlice({
       .addCase(postAuth.fulfilled, (state, action) => {
         state.loading = false;
         state.token = action.payload.token;
+        setToken(action.payload.token);
         state.user = action.payload;
       })
       .addCase(postAuth.rejected, (state, action) => {
