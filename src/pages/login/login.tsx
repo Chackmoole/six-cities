@@ -1,17 +1,22 @@
 import {FormEvent, useState} from 'react';
 import {postAuth} from '../../store/actions';
 import {useAppDispatch} from '../../store/hooks';
+import {useNavigate} from 'react-router-dom';
 
 export const Login = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useAppDispatch();
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-    dispatch(postAuth({ email, password }));
+    dispatch(postAuth({ email, password })).unwrap().then((result) => {
+      if(result && result.token) {
+        navigate('/');
+      }
+    });
   };
-
 
   return (
     <>
