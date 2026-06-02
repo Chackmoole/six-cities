@@ -25,7 +25,7 @@ export const Header = () => {
                     <span className="header__user-name user__name">
                       Oliver.conner@gmail.com
                     </span>
-                    <span className="header__favorite-count">3</span>
+                    {/*<span className="header__favorite-count">3</span>  TODO уточнить применяется ли данный эелемент*/}
                   </Link>
                 </li>)}
               <li className="header__nav-item">

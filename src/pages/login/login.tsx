@@ -1,18 +1,27 @@
 import {FormEvent, useState} from 'react';
 import {postAuth} from '../../store/actions';
 import {useAppDispatch} from '../../store/hooks';
-import {useNavigate} from 'react-router-dom';
+import {useLocation, useNavigate} from 'react-router-dom';
+
+interface ILocationState {
+  from?: string;
+}
 
 export const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useAppDispatch();
+  const location = useLocation();
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
     dispatch(postAuth({ email, password })).unwrap().then((result) => {
-      if(result && result.token) {
+      const state = location.state as ILocationState | undefined;
+      const from = state?.from;
+      if(result && result.token && from) {
+        navigate(from);
+      } else {
         navigate('/');
       }
     });
