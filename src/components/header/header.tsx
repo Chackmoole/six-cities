@@ -1,16 +1,17 @@
 import {getAuthorizationStatus} from '../../store/getters';
 import {useAppSelector} from '../../store/hooks';
-import {Link} from 'react-router-dom';
+import {Link, useLocation} from 'react-router-dom';
 
 export const Header = () => {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const location = useLocation();
   return (
     <header className="header">
       <div className="container">
         <div className="header__wrapper">
           <div className="header__left">
             <a className="header__logo-link header__logo-link--active" href="/">
-              <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
+              <img className="header__logo" src="../img/logo.svg" alt="6 cities logo" width="81" height="41"/>
             </a>
           </div>
           <nav className="header__nav">
@@ -29,7 +30,7 @@ export const Header = () => {
                   </Link>
                 </li>)}
               <li className="header__nav-item">
-                <Link className="header__nav-link" to={'login'}>
+                <Link className="header__nav-link" to={'login'} state={{ from: location.pathname }} >
                   <span className="header__signout">{authorizationStatus === 'auth' ? 'Sign out' : 'Sign in'}</span>
                 </Link>
               </li>
