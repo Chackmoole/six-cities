@@ -1,10 +1,12 @@
-import {getAuthorizationStatus} from '../../store/getters';
+import {getAuthorizationStatus, getUser} from '../../store/getters';
 import {useAppSelector} from '../../store/hooks';
 import {Link, useLocation} from 'react-router-dom';
 
 export const Header = () => {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const location = useLocation();
+  const user = useAppSelector(getUser);
+
   return (
     <header className="header">
       <div className="container">
@@ -22,9 +24,11 @@ export const Header = () => {
                     className="header__nav-link header__nav-link--profile"
                     to={'/favorites'}
                   >
-                    <div className="header__avatar-wrapper user__avatar-wrapper"></div>
+                    <div className="header__avatar-wrapper user__avatar-wrapper">
+                      <img src={user?.avatarUrl} alt={'аватарка пользователя'}></img>
+                    </div>
                     <span className="header__user-name user__name">
-                      Oliver.conner@gmail.com
+                      {user?.name}
                     </span>
                     {/*<span className="header__favorite-count">3</span>  TODO уточнить применяется ли данный эелемент*/}
                   </Link>

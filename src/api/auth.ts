@@ -15,6 +15,6 @@ export interface ILoginResponse {
 }
 
 
-export const getAuthFromServer = () => api.get<IAuth[]>('/login');
+export const getAuthFromServer = () => api.get<IAuth>('/login');
 
 export const loginUser = (body:ILoginPayload) => api.post<ILoginResponse>('/login', body);

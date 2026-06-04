@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import {IAuthorizationStatus, IOffer} from '../types/types';
-import {fetchAuth, fetchOffers} from './actions';
+import {IOffer} from '../types/types';
+import {fetchOffers} from './actions';
 
 interface ITownState {
   town: string;
@@ -9,8 +9,6 @@ interface ITownState {
   sorting: string;
   activeHoverOffer: number | null ;
   statusOffersLoaded: 'idle' | 'pending' | 'fulfilled' | 'rejected';
-  authorizationStatus: IAuthorizationStatus;
-  user: string | number | null | undefined ;
 }
 
 const initialState: ITownState = {
@@ -19,8 +17,6 @@ const initialState: ITownState = {
   sorting: 'popular',
   activeHoverOffer: null,
   statusOffersLoaded: 'idle',
-  authorizationStatus: 'unknown',
-  user: '',
 };
 
 const locationSlice = createSlice({
@@ -31,7 +27,6 @@ const locationSlice = createSlice({
     setOffers: (state, action:PayloadAction<IOffer[]>) => {state.offers = action.payload;},
     setSortingValue: (state, action:PayloadAction<string>) => {state.sorting = action.payload;},
     setActiveHoverOffer: (state, action:PayloadAction<number | null>) => {state.activeHoverOffer = action.payload;},
-    setAuthorizationStatus: (state, action:PayloadAction<IAuthorizationStatus>) => {state.authorizationStatus = action.payload;},
   },
   extraReducers: (builder) => {
     builder.addCase(fetchOffers.pending, (state, action) => {
@@ -43,13 +38,6 @@ const locationSlice = createSlice({
     });
     builder.addCase(fetchOffers.rejected, (state, action) => {
       state.statusOffersLoaded = 'rejected';
-    });
-    builder.addCase(fetchAuth.fulfilled, (state, action ) => {
-      state.user = action.payload;
-      state.authorizationStatus = 'auth';
-    });
-    builder.addCase(fetchAuth.rejected, (state, action) => {
-      state.authorizationStatus = 'noAuth';
     });
   }
 });
