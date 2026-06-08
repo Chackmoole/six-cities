@@ -42,5 +42,5 @@ const locationSlice = createSlice({
   }
 });
 
-export const {setActiveTown, setSortingValue, setActiveHoverOffer} = locationSlice.actions;
+export const {setActiveTown, setSortingValue, setActiveHoverOffer, setAuthorizationStatus} = locationSlice.actions;
 export const locationReducer = locationSlice.reducer;
