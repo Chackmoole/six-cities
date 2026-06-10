@@ -2,7 +2,7 @@ import {FormEvent, useState} from 'react';
 import {postAuth} from '../../store/actions';
 import {useAppDispatch} from '../../store/hooks';
 import {useLocation, useNavigate} from 'react-router-dom';
-import {setAuthorizationStatus} from '../../store/locationSlice';
+import {setAuthorizationStatus} from '../../store/authSlice';
 
 interface ILocationState {
   from?: string;
