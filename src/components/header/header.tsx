@@ -1,11 +1,24 @@
 import {getAuthorizationStatus, getUser} from '../../store/getters';
-import {useAppSelector} from '../../store/hooks';
+import {useAppDispatch, useAppSelector} from '../../store/hooks';
 import {Link, useLocation} from 'react-router-dom';
+import { setToken } from '../../services/token';
+import { setAuthorizationStatus, setAuthorizationToken, deleteUser } from '../../store/authSlice';
+
 
 export const Header = () => {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const location = useLocation();
   const user = useAppSelector(getUser);
+  const dispatch = useAppDispatch();
+
+  const handleClick = () => {
+    if (authorizationStatus === 'auth') {
+      setToken(null);
+      dispatch(setAuthorizationStatus('noAuth'));
+      dispatch(setAuthorizationToken(null));
+      dispatch(deleteUser(null));
+    }
+  };
 
   return (
     <header className="header">
@@ -34,7 +47,7 @@ export const Header = () => {
                   </Link>
                 </li>)}
               <li className="header__nav-item">
-                <Link className="header__nav-link" to={'login'} state={{ from: location.pathname }} >
+                <Link className="header__nav-link" to={'login'} state={{ from: location.pathname }} onClick={handleClick} >
                   <span className="header__signout">{authorizationStatus === 'auth' ? 'Sign out' : 'Sign in'}</span>
                 </Link>
               </li>

@@ -24,7 +24,10 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers:{
-    setAuthorizationStatus: (state, action:PayloadAction<IAuthorizationStatus>) => {state.authorizationStatus = action.payload;},},
+    setAuthorizationStatus: (state, action:PayloadAction<IAuthorizationStatus>) => {state.authorizationStatus = action.payload;},
+    setAuthorizationToken: (state, action:PayloadAction<string | null>) => {state.token = action.payload;},
+    deleteUser: (state, action:PayloadAction<null>) => {state.user = action.payload;}
+  },
   extraReducers: (builder) => {
     builder
       .addCase(postAuth.pending, (state) => {
@@ -53,5 +56,5 @@ const authSlice = createSlice({
   },
 });
 
-export const {setAuthorizationStatus} = authSlice.actions;
+export const {setAuthorizationStatus, setAuthorizationToken, deleteUser} = authSlice.actions;
 export const authReducer = authSlice.reducer;
