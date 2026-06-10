@@ -43,6 +43,8 @@ const authSlice = createSlice({
       })
       .addCase(fetchAuth.fulfilled, (state, action ) => {
         state.user = action.payload;
+        setToken(action.payload.token);
+        state.token = action.payload.token;
         state.authorizationStatus = 'auth';
       })
       .addCase(fetchAuth.rejected, (state, action) => {
