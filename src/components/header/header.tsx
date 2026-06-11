@@ -12,12 +12,10 @@ export const Header = () => {
   const dispatch = useAppDispatch();
 
   const handleClick = () => {
-    if (authorizationStatus === 'auth') {
-      setToken(null);
-      dispatch(setAuthorizationStatus('noAuth'));
-      dispatch(setAuthorizationToken(null));
-      dispatch(deleteUser(null));
-    }
+    setToken(null);
+    dispatch(setAuthorizationStatus('noAuth'));
+    dispatch(setAuthorizationToken(null));
+    dispatch(deleteUser(null));
   };
 
   return (
@@ -47,9 +45,16 @@ export const Header = () => {
                   </Link>
                 </li>)}
               <li className="header__nav-item">
-                <Link className="header__nav-link" to={'login'} state={{ from: location.pathname }} onClick={handleClick} >
-                  <span className="header__signout">{authorizationStatus === 'auth' ? 'Sign out' : 'Sign in'}</span>
-                </Link>
+
+                {authorizationStatus === 'auth' ?
+                  <Link className="header__nav-link" to={'/'} state={{ from: location.pathname }} onClick={handleClick}>
+                    <span className="header__signout">Sign out</span>
+                  </Link>
+                  :
+                  <Link className="header__nav-link" to={'login'} state={{ from: location.pathname }}>
+                    <span className="header__signout">Sign in</span>
+                  </Link>}
+
               </li>
             </ul>
           </nav>
