@@ -1,5 +1,5 @@
-import {IOffer} from '../../types/types';
-import {Link} from 'react-router-dom';
+import { IOffer } from "../../types/types";
+import { Link } from "react-router-dom";
 
 interface IProps {
   offer: IOffer;
@@ -7,21 +7,31 @@ interface IProps {
   handleUnSetActiveOffer: (id: number) => void;
 }
 
-export const Card = ({offer, handleSetActiveOffer, handleUnSetActiveOffer}:IProps
-) => {
+export const Card = ({
+  offer,
+  handleSetActiveOffer,
+  handleUnSetActiveOffer,
+}: IProps) => {
   const MAX_PERCENT = 100;
   const MAX_STARS = 5;
   return (
-    <article className="cities__place-card place-card" onMouseEnter={() => handleSetActiveOffer(offer.id)} onMouseLeave={() => handleUnSetActiveOffer((offer.id))}>
-      {offer.isPremium ?
+    <article
+      className="cities__place-card place-card"
+      onMouseEnter={() => handleSetActiveOffer(offer.id)}
+      onMouseLeave={() => handleUnSetActiveOffer(offer.id)}
+    >
+      {offer.isPremium ? (
         <div className="place-card__mark">
           <span>Premium</span>
         </div>
-        : null}
+      ) : null}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="/">
           <img
-            className="place-card__image" src={offer.previewImage} width="260" height="200"
+            className="place-card__image"
+            src={offer.previewImage}
+            width="260"
+            height="200"
             alt="Place"
           />
         </a>
@@ -32,7 +42,10 @@ export const Card = ({offer, handleSetActiveOffer, handleUnSetActiveOffer}:IProp
             <b className="place-card__price-value">&euro;{offer.price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className={`place-card__bookmark-button button ${offer.isFavorite ? 'place-card__bookmark-button--active' : ''}`} type="button">
+          <button
+            className={`place-card__bookmark-button button ${offer.isFavorite ? "place-card__bookmark-button--active" : ""}`}
+            type="button"
+          >
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
             </svg>
@@ -41,7 +54,9 @@ export const Card = ({offer, handleSetActiveOffer, handleUnSetActiveOffer}:IProp
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: `${((offer.rating * MAX_PERCENT) / MAX_STARS)}%`}}></span>
+            <span
+              style={{ width: `${(offer.rating * MAX_PERCENT) / MAX_STARS}%` }}
+            ></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
@@ -53,5 +68,3 @@ export const Card = ({offer, handleSetActiveOffer, handleUnSetActiveOffer}:IProp
     </article>
   );
 };
-
-

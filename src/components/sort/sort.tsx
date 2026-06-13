@@ -1,7 +1,7 @@
-import {useState} from 'react';
-import {SortList} from '../sort-list/sort-list';
-import {useSelector} from 'react-redux';
-import {getCurrentOptionLabel} from '../../store/getters';
+import { useState } from "react";
+import { SortList } from "../sort-list/sort-list";
+import { useSelector } from "react-redux";
+import { getCurrentOptionLabel } from "../../store/getters";
 
 export const Sort = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -10,8 +10,13 @@ export const Sort = () => {
   };
 
   const currentSorting = useSelector(getCurrentOptionLabel);
-  return(
-    <form className="places__sorting" action="#" method="get" onClick={handleRender}>
+  return (
+    <form
+      className="places__sorting"
+      action="#"
+      method="get"
+      onClick={handleRender}
+    >
       <span className="places__sorting-caption">Sort by</span>
       <span className="places__sorting-type" tabIndex={0}>
         {currentSorting}
@@ -19,5 +24,7 @@ export const Sort = () => {
           <use xlinkHref="#icon-arrow-select"></use>
         </svg>
       </span>
-      <SortList isVisible={isVisible}/>
-    </form>);};
+      <SortList isVisible={isVisible} />
+    </form>
+  );
+};

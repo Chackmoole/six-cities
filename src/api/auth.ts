@@ -1,5 +1,5 @@
-import {api} from '../services/api';
-import {IAuth} from '../types/types';
+import { api } from "../services/api";
+import { IAuth } from "../types/types";
 
 export interface ILoginPayload {
   email: string;
@@ -14,7 +14,7 @@ export interface ILoginResponse {
   token: string;
 }
 
+export const getAuthFromServer = () => api.get<IAuth>("/login");
 
-export const getAuthFromServer = () => api.get<IAuth>('/login');
-
-export const loginUser = (body:ILoginPayload) => api.post<ILoginResponse>('/login', body);
+export const loginUser = (body: ILoginPayload) =>
+  api.post<ILoginResponse>("/login", body);

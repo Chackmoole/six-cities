@@ -1,8 +1,8 @@
-import {FormEvent, useState} from 'react';
-import {postAuth} from '../../store/actions';
-import {useAppDispatch} from '../../store/hooks';
-import {useLocation, useNavigate} from 'react-router-dom';
-import {setAuthorizationStatus} from '../../store/authSlice';
+import { FormEvent, useState } from "react";
+import { postAuth } from "../../store/actions";
+import { useAppDispatch } from "../../store/hooks";
+import { useLocation, useNavigate } from "react-router-dom";
+import { setAuthorizationStatus } from "../../store/authSlice";
 
 interface ILocationState {
   from?: string;
@@ -10,44 +10,47 @@ interface ILocationState {
 
 export const Login = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const dispatch = useAppDispatch();
   const location = useLocation();
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-    dispatch(postAuth({ email, password })).unwrap().then((result) => {
-      const state = location.state as ILocationState | undefined;
-      const from = state?.from;
-      if(result && result.token && from) {
-        dispatch(setAuthorizationStatus('auth'));
-        navigate(from);
-      } else {
-        navigate('/');
-      }
-    });
+    dispatch(postAuth({ email, password }))
+      .unwrap()
+      .then(result => {
+        const state = location.state as ILocationState | undefined;
+        const from = state?.from;
+        if (result && result.token && from) {
+          dispatch(setAuthorizationStatus("auth"));
+          navigate(from);
+        } else {
+          navigate("/");
+        }
+      });
   };
 
   return (
     <>
-      <div style={{display: 'none'}}>
+      <div style={{ display: "none" }}>
         <svg xmlns="http://www.w3.org/2000/svg">
           <symbol id="icon-arrow-select" viewBox="0 0 7 4">
-            <path fillRule="evenodd" clipRule="evenodd" d="M0 0l3.5 2.813L7 0v1.084L3.5 4 0 1.084V0z"></path>
+            <path
+              fillRule="evenodd"
+              clipRule="evenodd"
+              d="M0 0l3.5 2.813L7 0v1.084L3.5 4 0 1.084V0z"
+            ></path>
           </symbol>
           <symbol id="icon-bookmark" viewBox="0 0 17 18">
-            <path
-              d="M3.993 2.185l.017-.092V2c0-.554.449-1 .99-1h10c.522 0 .957.41.997.923l-2.736 14.59-4.814-2.407-.39-.195-.408.153L1.31 16.44 3.993 2.185z"
-            >
-            </path>
+            <path d="M3.993 2.185l.017-.092V2c0-.554.449-1 .99-1h10c.522 0 .957.41.997.923l-2.736 14.59-4.814-2.407-.39-.195-.408.153L1.31 16.44 3.993 2.185z"></path>
           </symbol>
           <symbol id="icon-star" viewBox="0 0 13 12">
             <path
-              fillRule="evenodd" clipRule="evenodd"
+              fillRule="evenodd"
+              clipRule="evenodd"
               d="M6.5 9.644L10.517 12 9.451 7.56 13 4.573l-4.674-.386L6.5 0 4.673 4.187 0 4.573 3.549 7.56 2.483 12 6.5 9.644z"
-            >
-            </path>
+            ></path>
           </symbol>
         </svg>
       </div>
@@ -58,7 +61,13 @@ export const Login = () => {
             <div className="header__wrapper">
               <div className="header__left">
                 <a className="header__logo-link" href="main.html">
-                  <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
+                  <img
+                    className="header__logo"
+                    src="img/logo.svg"
+                    alt="6 cities logo"
+                    width="81"
+                    height="41"
+                  />
                 </a>
               </div>
             </div>
@@ -69,18 +78,42 @@ export const Login = () => {
           <div className="page__login-container container">
             <section className="login">
               <h1 className="login__title">Sign in</h1>
-              <form className="login__form form" action="#" method="post" onSubmit={handleSubmit}>
+              <form
+                className="login__form form"
+                action="#"
+                method="post"
+                onSubmit={handleSubmit}
+              >
                 <div className="login__input-wrapper form__input-wrapper">
                   <label className="visually-hidden">E-mail</label>
                   <input
-                    className="login__input form__input" type="email" name="email" placeholder="Email" required={false} value={email} onChange={(e) => setEmail(e.target.value)}
+                    className="login__input form__input"
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    required={false}
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
                   />
                 </div>
                 <div className="login__input-wrapper form__input-wrapper">
                   <label className="visually-hidden">Password</label>
-                  <input className="login__input form__input" type="password" name="password" placeholder="Password" required={false} value={password} onChange={(e) => setPassword(e.target.value)}/>
+                  <input
+                    className="login__input form__input"
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    required={false}
+                    value={password}
+                    onChange={e => setPassword(e.target.value)}
+                  />
                 </div>
-                <button className="login__submit form__submit button" type="submit">Sign in</button>
+                <button
+                  className="login__submit form__submit button"
+                  type="submit"
+                >
+                  Sign in
+                </button>
               </form>
             </section>
             <section className="locations locations--login locations--current">
