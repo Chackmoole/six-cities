@@ -1,5 +1,5 @@
-import { setActiveTown } from "../../store/locationSlice";
-import { useDispatch } from "react-redux";
+import { setActiveTown } from '../../store/locationSlice';
+import { useDispatch } from 'react-redux';
 
 interface IProps {
   city: string;
@@ -13,8 +13,8 @@ export const MainTab = ({ city, activeTown }: IProps) => {
       <div
         className={
           city === activeTown
-            ? "locations__item-link tabs__item tabs__item--active"
-            : "locations__item-link tabs__item"
+            ? 'locations__item-link tabs__item tabs__item--active'
+            : 'locations__item-link tabs__item'
         }
         onClick={() => dispatch(setActiveTown(city))}
       >

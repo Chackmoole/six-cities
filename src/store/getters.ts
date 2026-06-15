@@ -1,6 +1,6 @@
-import { RootState } from "./store";
-import { createSelector } from "@reduxjs/toolkit";
-import { sortingOptions } from "../const/sort-options";
+import { RootState } from './store';
+import { createSelector } from '@reduxjs/toolkit';
+import { sortingOptions } from '../const/sort-options';
 
 const getOffers = (state: RootState) => state.location.offers;
 export const getActiveTown = (state: RootState) => state.location.town;
@@ -38,14 +38,14 @@ export const getCurrentOffers = createSelector(
   [getOffersByTown, getSorting],
   (offers, sorting) => {
     switch (sorting) {
-      case "popular":
-      case "lowToHigh":
+      case 'popular':
+      case 'lowToHigh':
         offers.sort((a, b) => a.price - b.price);
         break;
-      case "highToLow":
+      case 'highToLow':
         offers.sort((a, b) => b.price - a.price);
         break;
-      case "byRate":
+      case 'byRate':
         offers.sort((a, b) => b.rating - a.rating);
         break;
       default:

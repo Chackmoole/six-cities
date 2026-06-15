@@ -1,6 +1,6 @@
 export const PropertyNotLogged = () => (
   <>
-    <div style={{ display: "none" }}>
+    <div style={{ display: 'none' }}>
       <svg xmlns="http://www.w3.org/2000/svg">
         <symbol id="icon-arrow-select" viewBox="0 0 7 4">
           <path
@@ -127,7 +127,7 @@ export const PropertyNotLogged = () => (
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
-                  <span style={{ width: "80%" }}></span>
+                  <span style={{ width: '80%' }}></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
                 <span className="property__rating-value rating__value">
@@ -213,7 +213,7 @@ export const PropertyNotLogged = () => (
                     <div className="reviews__info">
                       <div className="reviews__rating rating">
                         <div className="reviews__stars rating__stars">
-                          <span style={{ width: "80%" }}></span>
+                          <span style={{ width: '80%' }}></span>
                           <span className="visually-hidden">Rating</span>
                         </div>
                       </div>
@@ -275,7 +275,7 @@ export const PropertyNotLogged = () => (
                   </div>
                   <div className="place-card__rating rating">
                     <div className="place-card__stars rating__stars">
-                      <span style={{ width: "80%" }}></span>
+                      <span style={{ width: '80%' }}></span>
                       <span className="visually-hidden">Rating</span>
                     </div>
                   </div>
@@ -322,7 +322,7 @@ export const PropertyNotLogged = () => (
                   </div>
                   <div className="place-card__rating rating">
                     <div className="place-card__stars rating__stars">
-                      <span style={{ width: "80%" }}></span>
+                      <span style={{ width: '80%' }}></span>
                       <span className="visually-hidden">Rating</span>
                     </div>
                   </div>
@@ -372,7 +372,7 @@ export const PropertyNotLogged = () => (
                   </div>
                   <div className="place-card__rating rating">
                     <div className="place-card__stars rating__stars">
-                      <span style={{ width: "100%" }}></span>
+                      <span style={{ width: '100%' }}></span>
                       <span className="visually-hidden">Rating</span>
                     </div>
                   </div>

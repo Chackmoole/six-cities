@@ -1,8 +1,8 @@
-import { FormEvent, useState } from "react";
-import { postAuth } from "../../store/actions";
-import { useAppDispatch } from "../../store/hooks";
-import { useLocation, useNavigate } from "react-router-dom";
-import { setAuthorizationStatus } from "../../store/authSlice";
+import { FormEvent, useState } from 'react';
+import { postAuth, fetchOffer } from '../../store/actions';
+import { useAppDispatch } from '../../store/hooks';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { setAuthorizationStatus } from '../../store/authSlice';
 
 interface ILocationState {
   from?: string;
@@ -10,10 +10,12 @@ interface ILocationState {
 
 export const Login = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const dispatch = useAppDispatch();
   const location = useLocation();
+
+  dispatch(fetchOffer(1));
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
@@ -23,17 +25,17 @@ export const Login = () => {
         const state = location.state as ILocationState | undefined;
         const from = state?.from;
         if (result && result.token && from) {
-          dispatch(setAuthorizationStatus("auth"));
+          dispatch(setAuthorizationStatus('auth'));
           navigate(from);
         } else {
-          navigate("/");
+          navigate('/');
         }
       });
   };
 
   return (
     <>
-      <div style={{ display: "none" }}>
+      <div style={{ display: 'none' }}>
         <svg xmlns="http://www.w3.org/2000/svg">
           <symbol id="icon-arrow-select" viewBox="0 0 7 4">
             <path

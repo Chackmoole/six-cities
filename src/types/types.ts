@@ -1,4 +1,4 @@
-import { CITIES } from "../data/cities";
+import { CITIES } from '../data/cities';
 
 export interface IOffer {
   city: {
@@ -15,7 +15,7 @@ export interface IOffer {
   isFavorite: boolean;
   isPremium: boolean;
   rating: number;
-  type: "apartment" | "room" | "house" | "hotel";
+  type: 'apartment' | 'room' | 'house' | 'hotel';
   bedrooms: number;
   maxAdults: number;
   price: number;
@@ -68,7 +68,7 @@ export interface ISortOption {
   label: string;
 }
 
-export type IAuthorizationStatus = "auth" | "noAuth" | "unknown";
+export type IAuthorizationStatus = 'auth' | 'noAuth' | 'unknown';
 
 export interface IAuth {
   avatarUrl: string;

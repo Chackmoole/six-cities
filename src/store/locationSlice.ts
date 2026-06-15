@@ -1,26 +1,26 @@
-import { createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
-import { IOffer } from "../types/types";
-import { fetchOffers } from "./actions";
+import { createSlice } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
+import { IOffer } from '../types/types';
+import { fetchOffers } from './actions';
 
 interface ITownState {
   town: string;
   offers: IOffer[];
   sorting: string;
   activeHoverOffer: number | null;
-  statusOffersLoaded: "idle" | "pending" | "fulfilled" | "rejected";
+  statusOffersLoaded: 'idle' | 'pending' | 'fulfilled' | 'rejected';
 }
 
 const initialState: ITownState = {
-  town: "Paris",
+  town: 'Paris',
   offers: [],
-  sorting: "popular",
+  sorting: 'popular',
   activeHoverOffer: null,
-  statusOffersLoaded: "idle",
+  statusOffersLoaded: 'idle',
 };
 
 const locationSlice = createSlice({
-  name: "location",
+  name: 'location',
   initialState,
   reducers: {
     setActiveTown: (state, action: PayloadAction<string>) => {
@@ -38,14 +38,14 @@ const locationSlice = createSlice({
   },
   extraReducers: builder => {
     builder.addCase(fetchOffers.pending, (state, action) => {
-      state.statusOffersLoaded = "pending";
+      state.statusOffersLoaded = 'pending';
     });
     builder.addCase(fetchOffers.fulfilled, (state, action) => {
       state.offers = action.payload;
-      state.statusOffersLoaded = "fulfilled";
+      state.statusOffersLoaded = 'fulfilled';
     });
     builder.addCase(fetchOffers.rejected, (state, action) => {
-      state.statusOffersLoaded = "rejected";
+      state.statusOffersLoaded = 'rejected';
     });
   },
 });

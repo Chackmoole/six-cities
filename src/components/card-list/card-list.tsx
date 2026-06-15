@@ -1,7 +1,7 @@
-import { IOffer } from "../../types/types";
-import { Card } from "../card/card";
-import { useDispatch } from "react-redux";
-import { setActiveHoverOffer } from "../../store/locationSlice";
+import { IOffer } from '../../types/types';
+import { Card } from '../card/card';
+import { useDispatch } from 'react-redux';
+import { setActiveHoverOffer } from '../../store/locationSlice';
 
 interface IProps {
   offers: IOffer[];

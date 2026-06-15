@@ -1,19 +1,19 @@
-import { CardList } from "../../components/card-list/card-list";
-import { MainTabs } from "../../components/main-tabs/main-tabs";
-import { MapBox } from "../../components/map-box/map-box";
-import { useSelector } from "react-redux";
+import { CardList } from '../../components/card-list/card-list';
+import { MainTabs } from '../../components/main-tabs/main-tabs';
+import { MapBox } from '../../components/map-box/map-box';
+import { useSelector } from 'react-redux';
 import {
   getActiveTown,
   getCurrentOffers,
   getOfferLocations,
   getStatusOffersLoaded,
-} from "../../store/getters";
-import { Sort } from "../../components/sort/sort";
-import { useEffect } from "react";
-import { fetchOffers } from "../../store/actions";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { Spinner } from "../../components/spinner/spinner";
-import { Header } from "../../components/header/header";
+} from '../../store/getters';
+import { Sort } from '../../components/sort/sort';
+import { useEffect } from 'react';
+import { fetchOffers } from '../../store/actions';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { Spinner } from '../../components/spinner/spinner';
+import { Header } from '../../components/header/header';
 
 export const Main = () => {
   const offersCount = useSelector(getOfferLocations).length;
@@ -23,16 +23,16 @@ export const Main = () => {
   const statusOffersLoaded = useAppSelector(getStatusOffersLoaded);
   const dispatch = useAppDispatch();
   const isDataLoading =
-    statusOffersLoaded === "idle" || statusOffersLoaded === "pending";
-  const isDataLoaded = statusOffersLoaded === "fulfilled";
-  const isDataRejected = statusOffersLoaded === "rejected";
+    statusOffersLoaded === 'idle' || statusOffersLoaded === 'pending';
+  const isDataLoaded = statusOffersLoaded === 'fulfilled';
+  const isDataRejected = statusOffersLoaded === 'rejected';
   useEffect(() => {
     dispatch(fetchOffers());
   }, [dispatch]);
 
   return (
     <>
-      <div style={{ display: "none" }}>
+      <div style={{ display: 'none' }}>
         <svg xmlns="http://www.w3.org/2000/svg">
           <symbol id="icon-arrow-select" viewBox="0 0 7 4">
             <path

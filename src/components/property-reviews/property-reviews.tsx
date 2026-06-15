@@ -1,6 +1,6 @@
-import { PropertyReviewForm } from "../property-review-form/property-review-form";
-import { ReviewsItem } from "../reviews-item/reviews-item";
-import { IReview } from "../../types/types";
+import { PropertyReviewForm } from '../property-review-form/property-review-form';
+import { ReviewsItem } from '../reviews-item/reviews-item';
+import { IReview } from '../../types/types';
 
 interface IProps {
   reviews: IReview[];

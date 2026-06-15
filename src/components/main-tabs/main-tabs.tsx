@@ -1,7 +1,7 @@
-import { MainTab } from "../main-tab/main-tab";
-import { CITIES } from "../../data/cities";
-import { useSelector } from "react-redux";
-import { getActiveTown } from "../../store/getters";
+import { MainTab } from '../main-tab/main-tab';
+import { CITIES } from '../../data/cities';
+import { useSelector } from 'react-redux';
+import { getActiveTown } from '../../store/getters';
 
 export const MainTabs = () => {
   const activeTown = useSelector(getActiveTown);

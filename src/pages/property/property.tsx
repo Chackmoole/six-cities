@@ -1,14 +1,14 @@
-import { PropertyReviews } from "../../components/property-reviews/property-reviews";
-import { reviews } from "../../mock/reviews";
-import { PropertyMap } from "../../components/property-map/property-map";
-import { CardList } from "../../components/card-list/card-list";
-import { OFFERS } from "../../mock/offers";
+import { PropertyReviews } from '../../components/property-reviews/property-reviews';
+import { reviews } from '../../mock/reviews';
+import { PropertyMap } from '../../components/property-map/property-map';
+import { CardList } from '../../components/card-list/card-list';
+import { OFFERS } from '../../mock/offers';
 
 export const Property = () => {
   const neighbor = OFFERS.slice(0, 3);
   return (
     <>
-      <div style={{ display: "none" }}>
+      <div style={{ display: 'none' }}>
         <svg xmlns="http://www.w3.org/2000/svg">
           <symbol id="icon-arrow-select" viewBox="0 0 7 4">
             <path
@@ -142,7 +142,7 @@ export const Property = () => {
                 </div>
                 <div className="property__rating rating">
                   <div className="property__stars rating__stars">
-                    <span style={{ width: "80%" }}></span>
+                    <span style={{ width: '80%' }}></span>
                     <span className="visually-hidden">Rating</span>
                   </div>
                   <span className="property__rating-value rating__value">

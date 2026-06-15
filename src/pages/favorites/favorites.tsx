@@ -1,6 +1,6 @@
 export const Favorites = () => (
   <>
-    <div style={{ display: "none" }}>
+    <div style={{ display: 'none' }}>
       <svg xmlns="http://www.w3.org/2000/svg">
         <symbol id="icon-arrow-select" viewBox="0 0 7 4">
           <path
@@ -114,7 +114,7 @@ export const Favorites = () => (
                       </div>
                       <div className="place-card__rating rating">
                         <div className="place-card__stars rating__stars">
-                          <span style={{ width: "100%" }}></span>
+                          <span style={{ width: '100%' }}></span>
                           <span className="visually-hidden">Rating</span>
                         </div>
                       </div>
@@ -161,7 +161,7 @@ export const Favorites = () => (
                       </div>
                       <div className="place-card__rating rating">
                         <div className="place-card__stars rating__stars">
-                          <span style={{ width: "80%" }}></span>
+                          <span style={{ width: '80%' }}></span>
                           <span className="visually-hidden">Rating</span>
                         </div>
                       </div>
@@ -219,7 +219,7 @@ export const Favorites = () => (
                       </div>
                       <div className="place-card__rating rating">
                         <div className="place-card__stars rating__stars">
-                          <span style={{ width: "100%" }}></span>
+                          <span style={{ width: '100%' }}></span>
                           <span className="visually-hidden">Rating</span>
                         </div>
                       </div>

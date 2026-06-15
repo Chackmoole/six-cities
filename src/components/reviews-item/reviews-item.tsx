@@ -1,5 +1,5 @@
-import { IReview } from "../../types/types";
-import { conversionDate } from "../../util/util";
+import { IReview } from '../../types/types';
+import { conversionDate } from '../../util/util';
 
 interface IProps {
   review: IReview;
@@ -20,7 +20,7 @@ export const ReviewsItem = ({ review }: IProps) => (
       <span className="reviews__user-name">{review.user.name}</span>
       {review.user.isPro ? (
         <span
-          style={{ fontSize: "12px", lineHeight: "1.167", color: "#696969" }}
+          style={{ fontSize: '12px', lineHeight: '1.167', color: '#696969' }}
         >
           Pro
         </span>

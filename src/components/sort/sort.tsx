@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { SortList } from "../sort-list/sort-list";
-import { useSelector } from "react-redux";
-import { getCurrentOptionLabel } from "../../store/getters";
+import { useState } from 'react';
+import { SortList } from '../sort-list/sort-list';
+import { useSelector } from 'react-redux';
+import { getCurrentOptionLabel } from '../../store/getters';
 
 export const Sort = () => {
   const [isVisible, setIsVisible] = useState(false);
