@@ -31,7 +31,7 @@ export const Map = ({ heightStyle }: IProps) => {
         zoom: cityCentre.zoom,
       });
       if (offers) {
-        offers.forEach(offer => {
+        offers.forEach((offer) => {
           const marker = document.createElement('div');
           marker.style.backgroundImage = `url(${iconMarker})`;
           marker.style.width = '27px';

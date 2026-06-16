@@ -12,7 +12,7 @@ export const PropertyReviews = ({ reviews }: IProps) => (
       Reviews &middot; <span className="reviews__amount">{reviews.length}</span>
     </h2>
     <ul className="reviews__list">
-      {reviews.map(review => (
+      {reviews.map((review) => (
         <ReviewsItem key={review.id} review={review} />
       ))}
     </ul>

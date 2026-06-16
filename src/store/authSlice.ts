@@ -1,3 +1,4 @@
+/* eslint-disable arrow-parens */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { postAuth, fetchAuth } from './actions';
 import { setToken } from '../services/token';

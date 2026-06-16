@@ -21,7 +21,7 @@ export const SortList = ({ isVisible }: IProps) => {
           : 'places__options places__options--custom'
       }
     >
-      {sortingOptions.map(option => (
+      {sortingOptions.map((option) => (
         <li
           className={
             activeSorting === option.value

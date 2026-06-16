@@ -102,7 +102,7 @@ export const PropertyReviewForm = () => {
         id="review"
         name="review"
         placeholder="Tell how was your stay, what you like and what can be improved"
-        onChange={e => {
+        onChange={(e) => {
           setCommentValue(e.target.value);
         }}
         value={commentValue}

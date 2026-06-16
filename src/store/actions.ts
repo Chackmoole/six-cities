@@ -27,7 +27,7 @@ export const fetchAuth = createAsyncThunk(
 
 export const postAuth = createAsyncThunk<ILoginResponse, ILoginPayload>(
   'auth/login',
-  async body => {
+  async (body) => {
     const response = await loginUser(body);
     return response.data;
   }

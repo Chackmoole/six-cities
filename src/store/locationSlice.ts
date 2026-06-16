@@ -36,7 +36,7 @@ const locationSlice = createSlice({
       state.activeHoverOffer = action.payload;
     },
   },
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder.addCase(fetchOffers.pending, (state, action) => {
       state.statusOffersLoaded = 'pending';
     });

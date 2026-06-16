@@ -7,7 +7,7 @@ export const MainTabs = () => {
   const activeTown = useSelector(getActiveTown);
   return (
     <ul className="locations__list tabs__list">
-      {CITIES.map(city => (
+      {CITIES.map((city) => (
         <MainTab key={city} city={city} activeTown={activeTown} />
       ))}
     </ul>

@@ -1,3 +1,4 @@
+/* eslint-disable arrow-parens */
 import { RootState } from './store';
 import { createSelector } from '@reduxjs/toolkit';
 import { sortingOptions } from '../const/sort-options';

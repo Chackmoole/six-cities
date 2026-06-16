@@ -48,7 +48,8 @@ export const Header = () => {
                       <img
                         src={user?.avatarUrl}
                         alt={'аватарка пользователя'}
-                      ></img>
+                      >
+                      </img>
                     </div>
                     <span className="header__user-name user__name">
                       {user?.name}

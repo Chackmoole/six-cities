@@ -56,7 +56,8 @@ export const Card = ({
           <div className="place-card__stars rating__stars">
             <span
               style={{ width: `${(offer.rating * MAX_PERCENT) / MAX_STARS}%` }}
-            ></span>
+            >
+            </span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
