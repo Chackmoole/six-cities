@@ -31,7 +31,7 @@ const initialState: IState = {
     id: null,
     name: null,
     isPro: null,
-    avatarUrl: null,
+    avatarUrl: '',
   },
   description: null,
   location: {

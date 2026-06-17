@@ -59,7 +59,7 @@ export interface IOfferState {
     id: number | null;
     name: string | null;
     isPro: boolean | null;
-    avatarUrl: string | null;
+    avatarUrl: string;
   };
   description: string | null;
   location: {
