@@ -8,13 +8,22 @@ import {fetchOffer} from '../../store/actions';
 import {useAppDispatch, useAppSelector} from '../../store/hooks';
 import {getLoadingOffer, getOffer} from '../../store/getters';
 import {Spinner} from '../../components/spinner/spinner';
+import {useParams} from 'react-router-dom';
 
 export const Property = () => {
   const neighbor = OFFERS.slice(0, 3);
   const dispatch = useAppDispatch();
+  const params = useParams();
+
+
   useEffect(() => {
-    dispatch(fetchOffer(10));
-  }, [dispatch]);
+    const {id} = params;
+    if(id) {
+      const parseId = Number (id);
+      dispatch(fetchOffer(parseId));
+    }
+  }, [dispatch, params]);
+
   const isLoading = useAppSelector(getLoadingOffer);
   const offer = useAppSelector(getOffer);
 
