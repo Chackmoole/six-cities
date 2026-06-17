@@ -1,4 +1,3 @@
-/* eslint-disable arrow-parens */
 import { RootState } from './store';
 import { createSelector } from '@reduxjs/toolkit';
 import { sortingOptions } from '../const/sort-options';
@@ -18,21 +17,21 @@ export const getOfferLocations = createSelector(
   [getOffers, getActiveTown],
   (offers, town) =>
     offers
-      .filter(location => location.city.name === town)
-      .map(location => location.location)
+      .filter((location) => location.city.name === town)
+      .map((location) => location.location)
 );
 
 export const getCityCenter = createSelector(
   [getOffers, getActiveTown],
   (offers, town) => {
-    const currentTown = offers.find(location => location.city.name === town);
+    const currentTown = offers.find((location) => location.city.name === town);
     return currentTown?.city.location;
   }
 );
 
 export const getOffersByTown = createSelector(
   [getOffers, getActiveTown],
-  (offers, town) => offers.filter(offer => offer.city.name === town)
+  (offers, town) => offers.filter((offer) => offer.city.name === town)
 );
 
 export const getCurrentOffers = createSelector(
@@ -57,5 +56,5 @@ export const getCurrentOffers = createSelector(
 
 export const getCurrentOptionLabel = createSelector(
   [getSorting],
-  sort => sortingOptions.find(option => option.value === sort)?.label
+  (sort) => sortingOptions.find((option) => option.value === sort)?.label
 );

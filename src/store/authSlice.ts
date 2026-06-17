@@ -1,4 +1,3 @@
-/* eslint-disable arrow-parens */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { postAuth, fetchAuth } from './actions';
 import { setToken } from '../services/token';
@@ -43,9 +42,9 @@ const authSlice = createSlice({
       state.user = action.payload;
     },
   },
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder
-      .addCase(postAuth.pending, state => {
+      .addCase(postAuth.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
