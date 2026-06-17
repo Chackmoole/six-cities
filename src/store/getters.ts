@@ -12,6 +12,8 @@ export const getStatusOffersLoaded = (state: RootState) =>
 export const getAuthorizationStatus = (state: RootState) =>
   state.auth.authorizationStatus;
 export const getUser = (state: RootState) => state.auth.user;
+export const getLoadingOffer = (state: RootState) => state.offer.loading;
+export const getOffer = (state: RootState) => state.offer.offer;
 
 export const getOfferLocations = createSelector(
   [getOffers, getActiveTown],
