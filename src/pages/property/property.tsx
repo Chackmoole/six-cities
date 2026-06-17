@@ -167,17 +167,22 @@ export const Property = () => {
                   </div>
                   <ul className="property__features">
                     <li className="property__feature property__feature--entire">
-                      Apartment
+                      {offer.type}
                     </li>
                     <li className="property__feature property__feature--bedrooms">
-                      3 Bedrooms
+                      {offer.bedrooms === 1 ?
+                        '1 Bedroom' :
+                        `${offer.bedrooms ?? '1' } Bedrooms`}
                     </li>
                     <li className="property__feature property__feature--adults">
-                      Max 4 adults
+                      {offer.maxAdults === 1 ?
+                        'Max 1 adult' :
+                        `${offer.maxAdults ?? '1'} Max adults`}
+
                     </li>
                   </ul>
                   <div className="property__price">
-                    <b className="property__price-value">&euro;120</b>
+                    <b className="property__price-value">&euro;{offer.price}</b>
                     <span className="property__price-text">&nbsp;night</span>
                   </div>
                   <div className="property__inside">
