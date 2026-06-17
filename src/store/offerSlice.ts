@@ -1,8 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { IOfferState } from '../types/types';
+import {fetchOffer} from './actions';
 
-const initialState: IOfferState = {
-  city: {
+interface IState {
+  offer: IOfferState;
+  loading: boolean;
+}
+
+const initialState: IState = {
+  offer: {city: {
     name: null,
     location: {
       latitude: null,
@@ -34,12 +40,26 @@ const initialState: IOfferState = {
     zoom: null,
   },
   id: null,
+  },
+  loading: false,
 };
 
 const offerSlice = createSlice({
   name: 'offer',
   initialState,
   reducers: {},
-});
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchOffer.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(fetchOffer.fulfilled, (state, action) => {
+        state.offer = action.payload;
+        state.loading = false;
+      })
+      .addCase(fetchOffer.rejected, (state) => {
+        state.loading = false;
+      });
+  }});
 
 export const offerReducer = offerSlice.reducer;
