@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { postAuth, fetchAuth } from './actions';
-import { setToken } from '../services/token';
+import { setToken, dropToken } from '../services/token';
 import { IAuthorizationStatus } from '../types/types';
 
 interface IAuthState {
@@ -35,12 +35,12 @@ const authSlice = createSlice({
     ) => {
       state.authorizationStatus = action.payload;
     },
-    setAuthorizationToken: (state, action: PayloadAction<string | null>) => {
-      state.token = action.payload;
-    },
-    deleteUser: (state, action: PayloadAction<null>) => {
-      state.user = action.payload;
-    },
+    logoutUser: (state, action: PayloadAction<string | null>) => {
+      state.user = null;
+      state.token = null;
+      state.authorizationStatus = 'noAuth';
+      dropToken();
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -70,6 +70,6 @@ const authSlice = createSlice({
   },
 });
 
-export const { setAuthorizationStatus, setAuthorizationToken, deleteUser } =
+export const { setAuthorizationStatus, logoutUser } =
   authSlice.actions;
 export const authReducer = authSlice.reducer;

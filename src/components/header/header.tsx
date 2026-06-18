@@ -1,12 +1,7 @@
 import { getAuthorizationStatus, getUser } from '../../store/getters';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { Link, useLocation } from 'react-router-dom';
-import { setToken } from '../../services/token';
-import {
-  setAuthorizationStatus,
-  setAuthorizationToken,
-  deleteUser,
-} from '../../store/authSlice';
+import { logoutUser } from '../../store/authSlice';
 
 export const Header = () => {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
@@ -15,10 +10,7 @@ export const Header = () => {
   const dispatch = useAppDispatch();
 
   const handleClick = () => {
-    setToken(null);
-    dispatch(setAuthorizationStatus('noAuth'));
-    dispatch(setAuthorizationToken(null));
-    dispatch(deleteUser(null));
+    dispatch(logoutUser(null));
   };
 
   return (
