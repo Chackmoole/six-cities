@@ -6,9 +6,9 @@ import { OFFERS } from '../../mock/offers';
 import {useEffect} from 'react';
 import {fetchOffer} from '../../store/actions';
 import {useAppDispatch, useAppSelector} from '../../store/hooks';
-import {getLoadingOffer, getOffer} from '../../store/getters';
+import {getErrorOffer, getLoadingOffer, getOffer} from '../../store/getters';
 import {Spinner} from '../../components/spinner/spinner';
-import {useParams} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 
 export const Property = () => {
   const neighbor = OFFERS.slice(0, 3);
@@ -26,11 +26,13 @@ export const Property = () => {
 
   const isLoading = useAppSelector(getLoadingOffer);
   const offer = useAppSelector(getOffer);
+  const error = useAppSelector(getErrorOffer);
 
   if (isLoading) {
     return <Spinner/>;
   }
-  else {
+
+  if (offer) {
     return (
       <>
         <div style={{display: 'none'}}>
@@ -103,7 +105,7 @@ export const Property = () => {
             <section className="property">
               <div className="property__gallery-container container">
                 <div className="property__gallery" style={{overflow: 'auto'}}>
-                  {offer.images ? offer.images.map((image)=> (
+                  {offer ? offer.images.map((image) => (
                     <div className="property__image-wrapper" key={image}>
                       <img
                         className="property__image"
@@ -117,16 +119,16 @@ export const Property = () => {
               </div>
               <div className="property__container container">
                 <div className="property__wrapper">
-                  {offer.isPremium ?
+                  {offer && offer.isPremium ?
                     <div className="property__mark">
                       <span>Premium</span>
                     </div> : null}
 
                   <div className="property__name-wrapper">
                     <h1 className="property__name">
-                      {offer.title}
+                      {offer ? offer.title : null}
                     </h1>
-                    {offer.isFavorite ?
+                    {offer && offer.isFavorite ?
                       <button
                         className="property__bookmark-button property__bookmark-button--active button"
                         type="button"
@@ -158,11 +160,11 @@ export const Property = () => {
 
                   <div className="property__rating rating">
                     <div className="property__stars rating__stars">
-                      <span style={{width: `${offer.rating ? Number(offer.rating) * 20 : 0}%`}}></span>
+                      <span style={{width: `${offer && offer.rating ? Number(offer.rating) * 20 : 0}%`}}></span>
                       <span className="visually-hidden">Rating</span>
                     </div>
                     <span className="property__rating-value rating__value">
-                      {offer.rating}
+                      {offer ? offer.rating : null}
                     </span>
                   </div>
                   <ul className="property__features">
@@ -172,7 +174,7 @@ export const Property = () => {
                     <li className="property__feature property__feature--bedrooms">
                       {offer.bedrooms === 1 ?
                         '1 Bedroom' :
-                        `${offer.bedrooms ?? '1' } Bedrooms`}
+                        `${offer.bedrooms ?? '1'} Bedrooms`}
                     </li>
                     <li className="property__feature property__feature--adults">
                       {offer.maxAdults === 1 ?
@@ -234,4 +236,41 @@ export const Property = () => {
       </>
     );
   }
+  return (
+    <div style={{
+      padding: '16px',
+      backgroundColor: '#fefefe',
+      borderLeft: '4px solid #f44336',
+      opacity: 0.95,
+      maxWidth: '380px',
+      margin: '16px auto'
+    }}
+    >
+      <p style={{
+        color: '#424242',
+        marginBottom: '8px',
+        fontSize: '14px'
+      }}
+      >
+        {error || 'Произошла непредвиденная ошибка'}
+      </p>
+      <p style={{
+        color: '#757575',
+        marginBottom: '12px',
+        fontSize: '13px'
+      }}
+      >
+        Попробуйте позже или
+        <Link
+          to="/"
+          style={{
+            color: '#2196f3',
+            textDecoration: 'underline',
+            fontWeight: '500'
+          }}
+        > вернитесь на главную
+        </Link>
+      </p>
+    </div>
+  );
 };

@@ -35,41 +35,6 @@ export interface IOffer {
   id: number;
 }
 
-export interface IOfferState {
-  city: {
-    name: string | null;
-    location: {
-      latitude: number | null;
-      longitude: number | null;
-      zoom: number | null;
-    };
-  };
-  previewImage: string | null;
-  images: string[] | null;
-  title: string | null;
-  isFavorite: boolean | null;
-  isPremium: boolean | null;
-  rating: number | null;
-  type: 'apartment' | 'room' | 'house' | 'hotel' | null;
-  bedrooms: number | null;
-  maxAdults: number | null;
-  price: number | null;
-  goods: string[] | null;
-  host: {
-    id: number | null;
-    name: string | null;
-    isPro: boolean | null;
-    avatarUrl: string;
-  };
-  description: string | null;
-  location: {
-    latitude: number | null;
-    longitude: number | null;
-    zoom: number | null;
-  };
-  id: number | null;
-}
-
 export type ICitiesName = (typeof CITIES)[number];
 
 export interface ILocation {
