@@ -29,12 +29,6 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    setAuthorizationStatus: (
-      state,
-      action: PayloadAction<IAuthorizationStatus>
-    ) => {
-      state.authorizationStatus = action.payload;
-    },
     logoutUser: (state, action: PayloadAction<string | null>) => {
       state.user = null;
       state.token = null;
@@ -53,6 +47,7 @@ const authSlice = createSlice({
         state.token = action.payload.token;
         setToken(action.payload.token);
         state.user = action.payload;
+        state.authorizationStatus = 'auth';
       })
       .addCase(postAuth.rejected, (state, action) => {
         state.loading = false;
@@ -70,6 +65,6 @@ const authSlice = createSlice({
   },
 });
 
-export const { setAuthorizationStatus, logoutUser } =
+export const { logoutUser } =
   authSlice.actions;
 export const authReducer = authSlice.reducer;

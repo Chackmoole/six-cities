@@ -2,7 +2,6 @@ import { FormEvent, useState } from 'react';
 import { postAuth, fetchOffer } from '../../store/actions';
 import { useAppDispatch } from '../../store/hooks';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { setAuthorizationStatus } from '../../store/authSlice';
 
 interface ILocationState {
   from?: string;
@@ -25,7 +24,6 @@ export const Login = () => {
         const state = location.state as ILocationState | undefined;
         const from = state?.from;
         if (result && result.token && from) {
-          dispatch(setAuthorizationStatus('auth'));
           navigate(from);
         } else {
           navigate('/');
