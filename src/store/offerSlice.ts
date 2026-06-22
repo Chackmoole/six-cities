@@ -5,13 +5,15 @@ import {fetchOffer} from './actions';
 interface IState {
   offer: IOffer | null;
   loading: boolean;
-  error: string | null;
+  errorMessage: string | null;
+  error : boolean;
 }
 
 const initialState: IState = {
   offer: null,
   loading: false,
-  error: null,
+  errorMessage: null,
+  error: false,
 };
 
 const offerSlice = createSlice({
@@ -29,7 +31,8 @@ const offerSlice = createSlice({
       })
       .addCase(fetchOffer.rejected, (state, action) => {
         state.loading = false;
-        state.error = 'Ошибка загрузки отеля';
+        state.errorMessage = 'Ошибка загрузки отеля';
+        state.error = true;
       });
   }});
 

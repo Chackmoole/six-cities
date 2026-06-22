@@ -3,37 +3,33 @@ import { reviews } from '../../mock/reviews';
 import { PropertyMap } from '../../components/property-map/property-map';
 import { CardList } from '../../components/card-list/card-list';
 import { OFFERS } from '../../mock/offers';
-import {useEffect} from 'react';
-import {fetchOffer} from '../../store/actions';
-import {useAppDispatch, useAppSelector} from '../../store/hooks';
-import {getErrorOffer, getLoadingOffer, getOffer} from '../../store/getters';
-import {Spinner} from '../../components/spinner/spinner';
-import {Link, useParams} from 'react-router-dom';
+import { useEffect } from 'react';
+import { fetchOffer } from '../../store/actions';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { getErrorMessage, getLoadingOffer, getOffer, getError } from '../../store/getters';
+import { useParams } from 'react-router-dom';
+import { StatusWrapper } from '../../components/status-wrapper/status-wrapper';
 
 export const Property = () => {
   const neighbor = OFFERS.slice(0, 3);
   const dispatch = useAppDispatch();
   const params = useParams();
-
+  const id = params.id;
 
   useEffect(() => {
-    const {id} = params;
     if(id) {
       const parseId = Number (id);
       dispatch(fetchOffer(parseId));
     }
-  }, [dispatch, params]);
+  }, [dispatch, id]);
 
   const isLoading = useAppSelector(getLoadingOffer);
   const offer = useAppSelector(getOffer);
-  const error = useAppSelector(getErrorOffer);
+  const errorMessage = useAppSelector(getErrorMessage);
+  const error = useAppSelector(getError);
 
-  if (isLoading) {
-    return <Spinner/>;
-  }
-
-  if (offer) {
-    return (
+  return (
+    <StatusWrapper isLoading={isLoading} errorMessage={errorMessage} error={error}>
       <>
         <div style={{display: 'none'}}>
           <svg xmlns="http://www.w3.org/2000/svg">
@@ -103,123 +99,132 @@ export const Property = () => {
 
           <main className="page__main page__main--property">
             <section className="property">
-              <div className="property__gallery-container container">
-                <div className="property__gallery" style={{overflow: 'auto'}}>
-                  {offer ? offer.images.map((image) => (
-                    <div className="property__image-wrapper" key={image}>
-                      <img
-                        className="property__image"
-                        src={image}
-                        alt="Photo-studio"
-                      />
+
+              {offer && (
+                <>
+                  <div className="property__gallery-container container">
+                    <div className="property__gallery" style={{overflow: 'auto'}}>
+                      {offer ? offer.images.map((image) => (
+                        <div className="property__image-wrapper" key={image}>
+                          <img
+                            className="property__image"
+                            src={image}
+                            alt="Photo-studio"
+                          />
+                        </div>
+                      )
+                      ) : null}
                     </div>
-                  )
-                  ) : null}
-                </div>
-              </div>
-              <div className="property__container container">
-                <div className="property__wrapper">
-                  {offer && offer.isPremium ?
-                    <div className="property__mark">
-                      <span>Premium</span>
-                    </div> : null}
+                  </div>
+                  <div className="property__container container">
+                    <div className="property__wrapper">
 
-                  <div className="property__name-wrapper">
-                    <h1 className="property__name">
-                      {offer ? offer.title : null}
-                    </h1>
-                    {offer && offer.isFavorite ?
-                      <button
-                        className="property__bookmark-button property__bookmark-button--active button"
-                        type="button"
-                      >
-                        <svg
-                          className="property__bookmark-icon"
-                          width="31"
-                          height="33"
-                        >
-                          <use xlinkHref="#icon-bookmark"></use>
-                        </svg>
-                        <span className="visually-hidden">To bookmarks</span>
-                      </button>
-                      :
-                      <button
-                        className="property__bookmark-button button"
-                        type="button"
-                      >
-                        <svg
-                          className="property__bookmark-icon"
-                          width="31"
-                          height="33"
-                        >
-                          <use xlinkHref="#icon-bookmark"></use>
-                        </svg>
-                        <span className="visually-hidden">To bookmarks</span>
-                      </button>}
-                  </div>
-
-                  <div className="property__rating rating">
-                    <div className="property__stars rating__stars">
-                      <span style={{width: `${offer && offer.rating ? Number(offer.rating) * 20 : 0}%`}}></span>
-                      <span className="visually-hidden">Rating</span>
-                    </div>
-                    <span className="property__rating-value rating__value">
-                      {offer ? offer.rating : null}
-                    </span>
-                  </div>
-                  <ul className="property__features">
-                    <li className="property__feature property__feature--entire">
-                      {offer.type}
-                    </li>
-                    <li className="property__feature property__feature--bedrooms">
-                      {offer.bedrooms === 1 ?
-                        '1 Bedroom' :
-                        `${offer.bedrooms ?? '1'} Bedrooms`}
-                    </li>
-                    <li className="property__feature property__feature--adults">
-                      {offer.maxAdults === 1 ?
-                        'Max 1 adult' :
-                        `${offer.maxAdults ?? '1'} Max adults`}
-
-                    </li>
-                  </ul>
-                  <div className="property__price">
-                    <b className="property__price-value">&euro;{offer.price}</b>
-                    <span className="property__price-text">&nbsp;night</span>
-                  </div>
-                  <div className="property__inside">
-                    <h2 className="property__inside-title">What&apos;s inside</h2>
-                    <ul className="property__inside-list">
-                      {offer.goods ? offer.goods.map((good) => (
-                        <li className="property__inside-item" key={good}>{good}</li>
-                      )) : null}
-                    </ul>
-                  </div>
-                  <div className="property__host">
-                    <h2 className="property__host-title">Meet the host</h2>
-                    <div className="property__host-user user">
-                      <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">
-                        <img
-                          className="property__avatar user__avatar"
-                          src={offer.host.avatarUrl}
-                          width="74"
-                          height="74"
-                          alt="Host avatar"
-                        />
+                      <div className="property__mark">
+                        <span>Premium</span>
                       </div>
-                      <span className="property__user-name">{offer.host.name}</span>
-                      {offer.host.isPro ? <span className="property__user-status">Pro</span> : null}
-                    </div>
-                    <div className="property__description">
-                      <p className="property__text">
-                        {offer.description}
-                      </p>
+
+                      <div className="property__name-wrapper">
+                        <h1 className="property__name">
+                          {offer.title}
+                        </h1>
+                        {offer.isFavorite ?
+                          <button
+                            className="property__bookmark-button property__bookmark-button--active button"
+                            type="button"
+                          >
+                            <svg
+                              className="property__bookmark-icon"
+                              width="31"
+                              height="33"
+                            >
+                              <use xlinkHref="#icon-bookmark"></use>
+                            </svg>
+                            <span className="visually-hidden">To bookmarks</span>
+                          </button>
+                          :
+                          <button
+                            className="property__bookmark-button button"
+                            type="button"
+                          >
+                            <svg
+                              className="property__bookmark-icon"
+                              width="31"
+                              height="33"
+                            >
+                              <use xlinkHref="#icon-bookmark"></use>
+                            </svg>
+                            <span className="visually-hidden">To bookmarks</span>
+                          </button>}
+                      </div>
+
+                      <div className="property__rating rating">
+                        <div className="property__stars rating__stars">
+                          <span style={{width: `${
+                            Number(offer.rating) * 20}%`}}
+                          >
+                          </span>
+                          <span className="visually-hidden">Rating</span>
+                        </div>
+                        <span className="property__rating-value rating__value">
+                          {offer.rating}
+                        </span>
+                      </div>
+                      <ul className="property__features">
+                        <li className="property__feature property__feature--entire">
+                          {offer.type}
+                        </li>
+                        <li className="property__feature property__feature--bedrooms">
+                          { offer.bedrooms === 1 ?
+                            '1 Bedroom' :
+                            `${offer.bedrooms ?? '1'} Bedrooms`}
+                        </li>
+                        <li className="property__feature property__feature--adults">
+                          {offer.maxAdults === 1 ?
+                            'Max 1 adult' :
+                            `${offer.maxAdults ?? '1'} Max adults`}
+
+                        </li>
+                      </ul>
+                      <div className="property__price">
+                        <b className="property__price-value">&euro;{ offer.price}</b>
+                        <span className="property__price-text">&nbsp;night</span>
+                      </div>
+                      <div className="property__inside">
+                        <h2 className="property__inside-title">What&apos;s inside</h2>
+                        <ul className="property__inside-list">
+                          {offer.goods ? offer.goods.map((good) => (
+                            <li className="property__inside-item" key={good}>{good}</li>
+                          )) : null}
+                        </ul>
+                      </div>
+                      <div className="property__host">
+                        <h2 className="property__host-title">Meet the host</h2>
+                        <div className="property__host-user user">
+                          <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">
+                            <img
+                              className="property__avatar user__avatar"
+                              src={offer.host.avatarUrl}
+                              width="74"
+                              height="74"
+                              alt="Host avatar"
+                            />
+                          </div>
+                          <span className="property__user-name">{offer.host.name}</span>
+                          {offer.host.isPro ? <span className="property__user-status">Pro</span> : null}
+                        </div>
+                        <div className="property__description">
+                          <p className="property__text">
+                            {offer.description}
+                          </p>
+                        </div>
+                      </div>
+                      <PropertyReviews reviews={reviews}/>
                     </div>
                   </div>
-                  <PropertyReviews reviews={reviews}/>
-                </div>
-              </div>
-              <PropertyMap/>
+                  <PropertyMap/>
+                </>
+              )}
+
             </section>
             <div className="container">
               <section className="near-places places">
@@ -234,43 +239,5 @@ export const Property = () => {
           </main>
         </div>
       </>
-    );
-  }
-  return (
-    <div style={{
-      padding: '16px',
-      backgroundColor: '#fefefe',
-      borderLeft: '4px solid #f44336',
-      opacity: 0.95,
-      maxWidth: '380px',
-      margin: '16px auto'
-    }}
-    >
-      <p style={{
-        color: '#424242',
-        marginBottom: '8px',
-        fontSize: '14px'
-      }}
-      >
-        {error || 'Произошла непредвиденная ошибка'}
-      </p>
-      <p style={{
-        color: '#757575',
-        marginBottom: '12px',
-        fontSize: '13px'
-      }}
-      >
-        Попробуйте позже или
-        <Link
-          to="/"
-          style={{
-            color: '#2196f3',
-            textDecoration: 'underline',
-            fontWeight: '500'
-          }}
-        > вернитесь на главную
-        </Link>
-      </p>
-    </div>
-  );
+    </StatusWrapper>);
 };
