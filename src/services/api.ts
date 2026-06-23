@@ -1,5 +1,5 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
-import { getToken } from './token';
+import { getTokenToLocalStorage } from './token';
 
 const BACKEND_URL = 'https://10.react.htmlacademy.pro/six-cities';
 const REQUEST_TIMEOUT = 5000;
@@ -10,7 +10,7 @@ export const api: AxiosInstance = axios.create({
 });
 
 api.interceptors.request.use((config: AxiosRequestConfig) => {
-  const token = getToken();
+  const token = getTokenToLocalStorage();
   if (token && config.headers) {
     config.headers['X-Token'] = token;
   }

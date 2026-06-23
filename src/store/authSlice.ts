@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { postAuth, fetchAuth } from './actions';
-import { setToken, dropToken } from '../services/token';
+import { saveTokenToLocalStorage, dropTokenToLocalStorage } from '../services/token';
 import { IAuthorizationStatus } from '../types/types';
 
 interface IAuthState {
@@ -33,7 +33,7 @@ const authSlice = createSlice({
       state.user = null;
       state.token = null;
       state.authorizationStatus = 'noAuth';
-      dropToken();
+      dropTokenToLocalStorage();
     }
   },
   extraReducers: (builder) => {
@@ -45,7 +45,7 @@ const authSlice = createSlice({
       .addCase(postAuth.fulfilled, (state, action) => {
         state.loading = false;
         state.token = action.payload.token;
-        setToken(action.payload.token);
+        saveTokenToLocalStorage(action.payload.token);
         state.user = action.payload;
         state.authorizationStatus = 'auth';
       })
@@ -55,7 +55,7 @@ const authSlice = createSlice({
       })
       .addCase(fetchAuth.fulfilled, (state, action) => {
         state.user = action.payload;
-        setToken(action.payload.token);
+        saveTokenToLocalStorage(action.payload.token);
         state.token = action.payload.token;
         state.authorizationStatus = 'auth';
       })
