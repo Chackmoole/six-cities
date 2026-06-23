@@ -43,14 +43,14 @@ export const getCurrentOffers = createSelector(
   (offers, sorting) => {
     switch (sorting) {
       case 'popular':
-      case 'lowToHigh':
-        offers.sort((a, b) => a.price - b.price);
+      case ('lowToHigh'):
+        [...offers].sort((a, b) => a.price - b.price);
         break;
-      case 'highToLow':
-        offers.sort((a, b) => b.price - a.price);
+      case ('highToLow'):
+        [...offers].sort((a, b) => b.price - a.price);
         break;
       case 'byRate':
-        offers.sort((a, b) => b.rating - a.rating);
+        [...offers].sort((a, b) => b.rating - a.rating);
         break;
       default:
     }
@@ -62,3 +62,5 @@ export const getCurrentOptionLabel = createSelector(
   [getSorting],
   (sort) => sortingOptions.find((option) => option.value === sort)?.label
 );
+
+
