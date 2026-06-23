@@ -9,17 +9,17 @@ import {
 } from '../api/auth';
 import { getOfferFromServer } from '../api/offer';
 
-export const fetchOffers = createAsyncThunk(
+export const fetchOffers = createAsyncThunk<IOffer[]>(
   'fetchOffers',
-  async (): Promise<IOffer[]> => {
+  async () => {
     const response = await getOffersFromServer();
     return response.data;
   }
 );
 
-export const fetchAuth = createAsyncThunk(
+export const fetchAuth = createAsyncThunk<IAuth>(
   'fetchAuth',
-  async (): Promise<IAuth> => {
+  async () => {
     const response = await getAuthFromServer();
     return response.data;
   }
