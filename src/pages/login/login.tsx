@@ -1,5 +1,5 @@
 import { FormEvent, useState } from 'react';
-import { postAuth, fetchOffer } from '../../store/actions';
+import { postAuth } from '../../store/actions';
 import { useAppDispatch } from '../../store/hooks';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -13,8 +13,6 @@ export const Login = () => {
   const [password, setPassword] = useState('');
   const dispatch = useAppDispatch();
   const location = useLocation();
-
-  dispatch(fetchOffer(1));
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
