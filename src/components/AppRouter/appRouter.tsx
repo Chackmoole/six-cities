@@ -15,7 +15,7 @@ export const AppRouter = () => {
   useEffect(() => {
     dispatch(fetchAuth());
   }, [dispatch]);
-  const isAuth = useAppSelector(getAuthorizationStatus);
+  const authStatus = useAppSelector(getAuthorizationStatus);
 
   return (
     <Routes>
@@ -23,7 +23,7 @@ export const AppRouter = () => {
       <Route path={'/login'} element={<Login />} />
       <Route
         path={'/favorites'}
-        element={isAuth === 'auth' ? <Favorites /> : <Login />}
+        element={authStatus === 'auth' ? <Favorites /> : <Login />}
       />
       <Route path={'/offer/:id'} element={<Property />} />
       <Route path={'*'} element={<NotFoundPage />} />
