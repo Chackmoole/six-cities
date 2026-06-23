@@ -2,14 +2,14 @@ import React from 'react';
 import {Spinner} from '../spinner/spinner';
 import {Link} from 'react-router-dom';
 
-interface IStatus {
+interface IProps {
 isLoading?: boolean;
 errorMessage?: string | null;
 children?: React.ReactNode;
 error?: boolean;
 }
 
-export const StatusWrapper = ({isLoading, error, errorMessage = 'Кажется, что‑то пошло не так. Попробуйте позднее', children} : IStatus) => {
+export const StatusWrapper = ({isLoading, error, errorMessage = 'Кажется, что‑то пошло не так. Попробуйте позднее', children} : IProps) => {
   if (isLoading) {
     return <Spinner />;
   }

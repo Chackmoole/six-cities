@@ -12,8 +12,8 @@ import { Sort } from '../../components/sort/sort';
 import { useEffect } from 'react';
 import { fetchOffers } from '../../store/actions';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { Spinner } from '../../components/spinner/spinner';
 import { Header } from '../../components/header/header';
+import {StatusWrapper} from '../../components/status-wrapper/status-wrapper';
 
 export const Main = () => {
   const offersCount = useSelector(getOfferLocations).length;
@@ -24,7 +24,6 @@ export const Main = () => {
   const dispatch = useAppDispatch();
   const isDataLoading =
     statusOffersLoaded === 'idle' || statusOffersLoaded === 'pending';
-  const isDataLoaded = statusOffersLoaded === 'fulfilled';
   const isDataRejected = statusOffersLoaded === 'rejected';
   useEffect(() => {
     dispatch(fetchOffers());
@@ -65,8 +64,7 @@ export const Main = () => {
               <MainTabs />
             </section>
           </div>
-          {isDataLoading ? <Spinner /> : null}
-          {isDataLoaded ? (
+          <StatusWrapper isLoading={isDataLoading} error={isDataRejected}>
             <div className="cities">
               <div className="cities__places-container container">
                 <section className="cities__places places">
@@ -86,10 +84,7 @@ export const Main = () => {
                 <MapBox />
               </div>
             </div>
-          ) : null}
-          {isDataRejected ? (
-            <p>Кажется что-то пошло не так. Попробуйте позднее</p>
-          ) : null}
+          </StatusWrapper>
         </main>
       </div>
     </>
