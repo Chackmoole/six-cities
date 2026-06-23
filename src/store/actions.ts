@@ -4,7 +4,6 @@ import { getOffersFromServer } from '../api/hotels';
 import {
   getAuthFromServer,
   ILoginPayload,
-  ILoginResponse,
   loginUser,
 } from '../api/auth';
 import { getOfferFromServer } from '../api/offer';
@@ -25,7 +24,7 @@ export const fetchAuth = createAsyncThunk<IAuth>(
   }
 );
 
-export const postAuth = createAsyncThunk<ILoginResponse, ILoginPayload>(
+export const postAuth = createAsyncThunk<IAuth, ILoginPayload>(
   'auth/login',
   async (body) => {
     const response = await loginUser(body);
