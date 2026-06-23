@@ -8,7 +8,7 @@ export const getSorting = (state: RootState) => state.location.sorting;
 export const getActiveHoverOffer = (state: RootState) =>
   state.location.activeHoverOffer;
 export const getStatusOffersLoaded = (state: RootState) =>
-  state.location.statusOffersLoaded;
+  state.location.status;
 export const getAuthorizationStatus = (state: RootState) =>
   state.auth.authorizationStatus;
 export const getUser = (state: RootState) => state.auth.user;

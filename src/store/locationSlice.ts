@@ -8,7 +8,7 @@ interface ITownState {
   offers: IOffer[];
   sorting: string;
   activeHoverOffer: number | null;
-  statusOffersLoaded: 'idle' | 'pending' | 'fulfilled' | 'rejected';
+  status: 'idle' | 'pending' | 'fulfilled' | 'rejected';
 }
 
 const initialState: ITownState = {
@@ -16,7 +16,7 @@ const initialState: ITownState = {
   offers: [],
   sorting: 'popular',
   activeHoverOffer: null,
-  statusOffersLoaded: 'idle',
+  status: 'idle',
 };
 
 const locationSlice = createSlice({
@@ -38,14 +38,14 @@ const locationSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(fetchOffers.pending, (state, action) => {
-      state.statusOffersLoaded = 'pending';
+      state.status = 'pending';
     });
     builder.addCase(fetchOffers.fulfilled, (state, action) => {
       state.offers = action.payload;
-      state.statusOffersLoaded = 'fulfilled';
+      state.status = 'fulfilled';
     });
     builder.addCase(fetchOffers.rejected, (state, action) => {
-      state.statusOffersLoaded = 'rejected';
+      state.status = 'rejected';
     });
   },
 });
