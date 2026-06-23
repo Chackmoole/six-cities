@@ -12,7 +12,7 @@ interface IAuthState {
     avatarUrl: string;
     isPro: boolean;
   };
-  loading: boolean;
+  isLoading: boolean;
   error: string | null;
   authorizationStatus: IAuthorizationStatus;
 }
@@ -20,7 +20,7 @@ interface IAuthState {
 const initialState: IAuthState = {
   token: null,
   user: null,
-  loading: false,
+  isLoading: false,
   error: null,
   authorizationStatus: 'unknown',
 };
@@ -39,18 +39,18 @@ const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(postAuth.pending, (state) => {
-        state.loading = true;
+        state.isLoading = true;
         state.error = null;
       })
       .addCase(postAuth.fulfilled, (state, action) => {
-        state.loading = false;
+        state.isLoading = false;
         state.token = action.payload.token;
         saveTokenToLocalStorage(action.payload.token);
         state.user = action.payload;
         state.authorizationStatus = 'auth';
       })
       .addCase(postAuth.rejected, (state, action) => {
-        state.loading = false;
+        state.isLoading = false;
         state.error = 'Неизвестная ошибка';
       })
       .addCase(fetchAuth.fulfilled, (state, action) => {
