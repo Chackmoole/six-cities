@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { IAuth, IOffer } from '../types/types';
+import {IAuth, IOffer, IReview} from '../types/types';
 import { getOffersFromServer } from '../api/hotels';
 import {
   getAuthFromServer,
@@ -8,6 +8,7 @@ import {
 } from '../api/auth';
 import { getOfferFromServer } from '../api/offer';
 import {getNearbyOfferFromServer} from '../api/nearby-offers';
+import {getAllComments} from '../api/comments';
 
 export const fetchOffers = createAsyncThunk<IOffer[]>(
   'fetchOffers',
@@ -48,3 +49,13 @@ export const fetchNearbyOffers = createAsyncThunk<IOffer, number> (
     return response.data;
   }
 );
+
+export const fetchComments = createAsyncThunk <IReview, number>
+(
+  'fetchComments',
+  async (id: number) => {
+    const response = await getAllComments(id);
+    return response.data;
+  }
+);
+
