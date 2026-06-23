@@ -23,8 +23,9 @@ export const Map = ({ heightStyle }: IProps) => {
   const activeHoverOffer = useSelector(getActiveHoverOffer);
 
   useEffect(() => {
+    let map: maplibregl.Map | null = null;
     if (mapContainer.current && cityCentre) {
-      const map = new maplibregl.Map({
+      map = new maplibregl.Map({
         container: mapContainer.current,
         style: 'https://tiles.openfreemap.org/styles/bright',
         center: [cityCentre.longitude, cityCentre.latitude],
@@ -41,12 +42,20 @@ export const Map = ({ heightStyle }: IProps) => {
             ? (marker.style.backgroundImage = `url(${iconActiveMarker})`)
             : (marker.style.backgroundImage = `url(${iconMarker})`);
 
-          new maplibregl.Marker({ element: marker })
-            .setLngLat([offer.location.longitude, offer.location.latitude])
-            .addTo(map);
-        });
+          if (map) {
+            new maplibregl.Marker({ element: marker })
+              .setLngLat([offer.location.longitude, offer.location.latitude])
+              .addTo(map);
+          }
+        }
+        );
       }
     }
+    return () => {
+      if (map) {
+        map.remove();
+      }
+    };
   }, [activeHoverOffer, activeTown, cityCentre, offers]);
 
   return (
