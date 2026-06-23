@@ -10,7 +10,7 @@ import {
 } from '../../store/getters';
 import { Sort } from '../../components/sort/sort';
 import { useEffect } from 'react';
-import { fetchOffers } from '../../store/actions';
+import { fetchOffers} from '../../store/actions';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { Header } from '../../components/header/header';
 import {StatusWrapper} from '../../components/status-wrapper/status-wrapper';

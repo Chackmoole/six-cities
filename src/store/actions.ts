@@ -7,6 +7,7 @@ import {
   loginUser,
 } from '../api/auth';
 import { getOfferFromServer } from '../api/offer';
+import {getNearbyOfferFromServer} from '../api/nearby-offers';
 
 export const fetchOffers = createAsyncThunk<IOffer[]>(
   'fetchOffers',
@@ -36,6 +37,14 @@ export const fetchOffer = createAsyncThunk<IOffer, number>(
   'fetchOffer',
   async (id: number) => {
     const response = await getOfferFromServer(id);
+    return response.data;
+  }
+);
+
+export const fetchNearbyOffers = createAsyncThunk<IOffer, number> (
+  'fetchNearbyOffers',
+  async (id: number) => {
+    const response = await getNearbyOfferFromServer(id);
     return response.data;
   }
 );
