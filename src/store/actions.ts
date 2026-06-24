@@ -42,7 +42,7 @@ export const fetchOffer = createAsyncThunk<IOffer, number>(
   }
 );
 
-export const fetchNearbyOffers = createAsyncThunk<IOffer, number> (
+export const fetchNearbyOffers = createAsyncThunk<IOffer[], number> (
   'fetchNearbyOffers',
   async (id: number) => {
     const response = await getNearbyOfferFromServer(id);
@@ -50,7 +50,7 @@ export const fetchNearbyOffers = createAsyncThunk<IOffer, number> (
   }
 );
 
-export const fetchComments = createAsyncThunk <IReview, number>
+export const fetchComments = createAsyncThunk <IReview[], number>
 (
   'fetchComments',
   async (id: number) => {
