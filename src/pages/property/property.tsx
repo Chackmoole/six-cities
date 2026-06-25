@@ -4,7 +4,7 @@ import { PropertyMap } from '../../components/property-map/property-map';
 import { CardList } from '../../components/card-list/card-list';
 import { OFFERS } from '../../mock/offers';
 import { useEffect } from 'react';
-import { fetchOffer } from '../../store/actions';
+import {fetchComments, fetchOffer} from '../../store/actions';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { getErrorMessage, getLoadingOffer, getOffer, getError } from '../../store/getters';
 import { useParams } from 'react-router-dom';

@@ -3,6 +3,7 @@ import { locationReducer } from './locationSlice';
 import { authReducer } from './authSlice';
 import { offerReducer } from './offerSlice';
 import {nearbyOffersReducer} from './nearbyOffersSlice';
+import {commentsReducer} from './commentsSlice';
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     auth: authReducer,
     offer: offerReducer,
     nearbyOffers: nearbyOffersReducer,
+    comments: commentsReducer,
   },
 });
 
