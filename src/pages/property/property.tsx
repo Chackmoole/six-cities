@@ -1,12 +1,12 @@
 import { PropertyReviews } from '../../components/property-reviews/property-reviews';
-import { reviews } from '../../mock/reviews';
+// import { reviews } from '../../mock/reviews';
 import { PropertyMap } from '../../components/property-map/property-map';
 import { CardList } from '../../components/card-list/card-list';
 import { OFFERS } from '../../mock/offers';
 import { useEffect } from 'react';
 import {fetchComments, fetchOffer} from '../../store/actions';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { getErrorMessage, getLoadingOffer, getOffer, getError } from '../../store/getters';
+import {getErrorMessage, getLoadingOffer, getOffer, getError, getComments} from '../../store/getters';
 import { useParams } from 'react-router-dom';
 import { StatusWrapper } from '../../components/status-wrapper/status-wrapper';
 
@@ -20,6 +20,7 @@ export const Property = () => {
     if(id) {
       const parseId = Number (id);
       dispatch(fetchOffer(parseId));
+      dispatch(fetchComments(parseId));
     }
   }, [dispatch, id]);
 
@@ -27,6 +28,8 @@ export const Property = () => {
   const offer = useAppSelector(getOffer);
   const errorMessage = useAppSelector(getErrorMessage);
   const error = useAppSelector(getError);
+
+  const reviews = useAppSelector(getComments);
 
   return (
     <StatusWrapper isLoading={isLoading} errorMessage={errorMessage} error={error}>
@@ -218,7 +221,7 @@ export const Property = () => {
                           </p>
                         </div>
                       </div>
-                      <PropertyReviews reviews={reviews}/>
+                      <PropertyReviews reviews={reviews ?? []}/>
                     </div>
                   </div>
                   <PropertyMap/>

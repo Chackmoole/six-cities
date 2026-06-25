@@ -16,6 +16,7 @@ export const getLoadingOffer = (state: RootState) => state.offer.loading;
 export const getOffer = (state: RootState) => state.offer.offer;
 export const getErrorMessage = (state: RootState) => state.offer.errorMessage;
 export const getError = (state: RootState) => state.offer.error;
+export const getComments = (state: RootState) => state.comments.comments;
 
 export const getOfferLocations = createSelector(
   [getOffers, getActiveTown],
