@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { fetchNearbyOffers } from './actions';
 
 interface INearbyOffersState {
-  offers : IOffer | null | IOffer[];
+  offers : IOffer[] | null;
   isLoading: boolean;
   error: string | null;
 }

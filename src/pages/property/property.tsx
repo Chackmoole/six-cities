@@ -1,17 +1,14 @@
 import { PropertyReviews } from '../../components/property-reviews/property-reviews';
-// import { reviews } from '../../mock/reviews';
 import { PropertyMap } from '../../components/property-map/property-map';
 import { CardList } from '../../components/card-list/card-list';
-import { OFFERS } from '../../mock/offers';
 import { useEffect } from 'react';
-import {fetchComments, fetchOffer} from '../../store/actions';
+import {fetchComments, fetchNearbyOffers, fetchOffer} from '../../store/actions';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import {getErrorMessage, getLoadingOffer, getOffer, getError, getComments} from '../../store/getters';
+import { getErrorMessage, getLoadingOffer, getOffer, getError, getComments, getNearbyOffers } from '../../store/getters';
 import { useParams } from 'react-router-dom';
 import { StatusWrapper } from '../../components/status-wrapper/status-wrapper';
 
 export const Property = () => {
-  const neighbor = OFFERS.slice(0, 3);
   const dispatch = useAppDispatch();
   const params = useParams();
   const id = params.id;
@@ -21,6 +18,7 @@ export const Property = () => {
       const parseId = Number (id);
       dispatch(fetchOffer(parseId));
       dispatch(fetchComments(parseId));
+      dispatch(fetchNearbyOffers(parseId));
     }
   }, [dispatch, id]);
 
@@ -30,6 +28,7 @@ export const Property = () => {
   const error = useAppSelector(getError);
 
   const reviews = useAppSelector(getComments);
+  const neighbor = useAppSelector(getNearbyOffers);
 
   return (
     <StatusWrapper isLoading={isLoading} errorMessage={errorMessage} error={error}>
@@ -235,7 +234,7 @@ export const Property = () => {
                   Other places in the neighbourhood
                 </h2>
                 <div className="near-places__list places__list">
-                  <CardList offers={neighbor}/>
+                  <CardList offers={neighbor ?? []}/>
                 </div>
               </section>
             </div>

@@ -17,6 +17,7 @@ export const getOffer = (state: RootState) => state.offer.offer;
 export const getErrorMessage = (state: RootState) => state.offer.errorMessage;
 export const getError = (state: RootState) => state.offer.error;
 export const getComments = (state: RootState) => state.comments.comments;
+export const getNearbyOffers = (state: RootState) => state.nearbyOffers.offers;
 
 export const getOfferLocations = createSelector(
   [getOffers, getActiveTown],
