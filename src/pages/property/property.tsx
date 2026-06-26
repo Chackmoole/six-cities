@@ -15,7 +15,6 @@ import {
 } from '../../store/getters';
 import { useParams } from 'react-router-dom';
 import { StatusWrapper } from '../../components/status-wrapper/status-wrapper';
-import {PropertyReviewForm} from '../../components/property-review-form/property-review-form';
 import {Header} from '../../components/header/header';
 
 export const Property = () => {
@@ -195,8 +194,7 @@ export const Property = () => {
                           </p>
                         </div>
                       </div>
-                      <PropertyReviews reviews={reviews ?? []}/>
-                      { authorizationStatus === 'auth' ? <PropertyReviewForm /> : null }
+                      <PropertyReviews reviews={reviews ?? []} authorizationStatus={authorizationStatus} />
                     </div>
                   </div>
                   <PropertyMap/>
