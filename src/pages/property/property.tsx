@@ -39,6 +39,8 @@ export const Property = () => {
 
   const reviews = useAppSelector(getComments);
   const neighbor = useAppSelector(getNearbyOffers);
+  const offers = null;
+
   return (
     <StatusWrapper isLoading={isLoading} errorMessage={errorMessage} error={error}>
       <>
@@ -196,7 +198,7 @@ export const Property = () => {
                       <PropertyReviews reviews={reviews ?? []} authorizationStatus={authorizationStatus} />
                     </div>
                   </div>
-                  <PropertyMap cityCentre={offer.city.location}/>
+                  <PropertyMap cityCentre={offer.city.location} offers={offers}/>
                 </>
               )}
 

@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import {
   getActiveTown, getCityCenter,
   getCurrentOffers,
-  getOfferLocations,
+  getOfferLocations, getOffersByTown,
   getStatusOffersLoaded,
 } from '../../store/getters';
 import { Sort } from '../../components/sort/sort';
@@ -25,6 +25,8 @@ export const Main = () => {
   const isDataLoading =
     statusOffersLoaded === 'idle' || statusOffersLoaded === 'pending';
   const isDataRejected = statusOffersLoaded === 'rejected';
+  const offersForMarkers = useSelector(getOffersByTown);
+
   useEffect(() => {
     dispatch(fetchOffers());
   }, [dispatch]);
@@ -83,7 +85,7 @@ export const Main = () => {
                   <Sort />
                   <CardList offers={offers} />
                 </section>
-                {cityCentre ? <MapBox cityCentre={cityCentre}/> : null}
+                {cityCentre ? <MapBox cityCentre={cityCentre} offers={offersForMarkers}/> : null}
 
               </div>
             </div>

@@ -7,19 +7,18 @@ import { useSelector } from 'react-redux';
 import {
   getActiveHoverOffer,
   getActiveTown,
-  getOffersByTown,
 } from '../../store/getters';
-import {ILocation} from '../../types/types';
+import {ILocation, IOffer} from '../../types/types';
 
 interface IProps {
   heightStyle: string;
   cityCentre: ILocation;
+  offers: IOffer[] | null;
 }
 
-export const Map = ({ heightStyle, cityCentre }: IProps) => {
+export const Map = ({ heightStyle, cityCentre, offers }: IProps) => {
   const mapContainer = useRef(null);
   const activeTown = useSelector(getActiveTown);
-  const offers = useSelector(getOffersByTown);
   const activeHoverOffer = useSelector(getActiveHoverOffer);
 
   useEffect(() => {
