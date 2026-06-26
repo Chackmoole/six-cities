@@ -63,7 +63,7 @@ export const Header = () => {
                 ) : (
                   <Link
                     className="header__nav-link"
-                    to={'login'}
+                    to={'/login'}
                     state={{ from: location.pathname }}
                   >
                     <span className="header__signout">Sign in</span>

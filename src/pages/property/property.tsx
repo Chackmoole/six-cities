@@ -4,14 +4,25 @@ import { CardList } from '../../components/card-list/card-list';
 import { useEffect } from 'react';
 import {fetchComments, fetchNearbyOffers, fetchOffer} from '../../store/actions';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { getErrorMessage, getLoadingOffer, getOffer, getError, getComments, getNearbyOffers } from '../../store/getters';
+import {
+  getErrorMessage,
+  getLoadingOffer,
+  getOffer,
+  getError,
+  getComments,
+  getNearbyOffers,
+  getAuthorizationStatus
+} from '../../store/getters';
 import { useParams } from 'react-router-dom';
 import { StatusWrapper } from '../../components/status-wrapper/status-wrapper';
+import {PropertyReviewForm} from '../../components/property-review-form/property-review-form';
+import {Header} from '../../components/header/header';
 
 export const Property = () => {
   const dispatch = useAppDispatch();
   const params = useParams();
   const id = params.id;
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   useEffect(() => {
     if(id) {
@@ -61,43 +72,7 @@ export const Property = () => {
         </div>
 
         <div className="page">
-          <header className="header">
-            <div className="container">
-              <div className="header__wrapper">
-                <div className="header__left">
-                  <a className="header__logo-link" href="main.html">
-                    <img
-                      className="header__logo"
-                      src="img/logo.svg"
-                      alt="6 cities logo"
-                      width="81"
-                      height="41"
-                    />
-                  </a>
-                </div>
-                <nav className="header__nav">
-                  <ul className="header__nav-list">
-                    <li className="header__nav-item user">
-                      <a
-                        className="header__nav-link header__nav-link--profile"
-                        href="/"
-                      >
-                        <div className="header__avatar-wrapper user__avatar-wrapper"></div>
-                        <span className="header__user-name user__name">
-                        Oliver.conner@gmail.com
-                        </span>
-                      </a>
-                    </li>
-                    <li className="header__nav-item">
-                      <a className="header__nav-link" href="/">
-                        <span className="header__signout">Sign out</span>
-                      </a>
-                    </li>
-                  </ul>
-                </nav>
-              </div>
-            </div>
-          </header>
+          <Header />
 
           <main className="page__main page__main--property">
             <section className="property">
@@ -221,6 +196,7 @@ export const Property = () => {
                         </div>
                       </div>
                       <PropertyReviews reviews={reviews ?? []}/>
+                      { authorizationStatus === 'auth' ? <PropertyReviewForm /> : null }
                     </div>
                   </div>
                   <PropertyMap/>

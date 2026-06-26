@@ -1,4 +1,3 @@
-import { PropertyReviewForm } from '../property-review-form/property-review-form';
 import { ReviewsItem } from '../reviews-item/reviews-item';
 import { IReview } from '../../types/types';
 
@@ -16,6 +15,6 @@ export const PropertyReviews = ({ reviews }: IProps) => (
         <ReviewsItem key={review.id} review={review} />
       ))}
     </ul>
-    <PropertyReviewForm />
+
   </section>
 );
