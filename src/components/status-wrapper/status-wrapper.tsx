@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 interface IProps {
 isLoading?: boolean;
 errorMessage?: string | null;
-children?: React.ReactNode;
+children: JSX.Element;
 error?: boolean;
 }
 
@@ -53,9 +53,5 @@ export const StatusWrapper = ({isLoading, error, errorMessage = 'Кажется,
       </div>
     );
   }
-  return (
-    <div>
-      {children}
-    </div>
-  );
+  return children;
 };

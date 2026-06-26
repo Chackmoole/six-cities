@@ -3,7 +3,7 @@ import { MainTabs } from '../../components/main-tabs/main-tabs';
 import { MapBox } from '../../components/map-box/map-box';
 import { useSelector } from 'react-redux';
 import {
-  getActiveTown,
+  getActiveTown, getCityCenter,
   getCurrentOffers,
   getOfferLocations,
   getStatusOffersLoaded,
@@ -28,6 +28,8 @@ export const Main = () => {
   useEffect(() => {
     dispatch(fetchOffers());
   }, [dispatch]);
+
+  const cityCentre = useSelector(getCityCenter);
 
   return (
     <>
@@ -81,7 +83,8 @@ export const Main = () => {
                   <Sort />
                   <CardList offers={offers} />
                 </section>
-                <MapBox />
+                {cityCentre ? <MapBox cityCentre={cityCentre}/> : null}
+
               </div>
             </div>
           </StatusWrapper>

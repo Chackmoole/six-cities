@@ -7,19 +7,19 @@ import { useSelector } from 'react-redux';
 import {
   getActiveHoverOffer,
   getActiveTown,
-  getCityCenter,
   getOffersByTown,
 } from '../../store/getters';
+import {ILocation} from '../../types/types';
 
 interface IProps {
   heightStyle: string;
+  cityCentre: ILocation;
 }
 
-export const Map = ({ heightStyle }: IProps) => {
+export const Map = ({ heightStyle, cityCentre }: IProps) => {
   const mapContainer = useRef(null);
   const activeTown = useSelector(getActiveTown);
   const offers = useSelector(getOffersByTown);
-  const cityCentre = useSelector(getCityCenter);
   const activeHoverOffer = useSelector(getActiveHoverOffer);
 
   useEffect(() => {
@@ -51,11 +51,6 @@ export const Map = ({ heightStyle }: IProps) => {
         );
       }
     }
-    return () => {
-      if (map) {
-        map.remove();
-      }
-    };
   }, [activeHoverOffer, activeTown, cityCentre, offers]);
 
   return (
