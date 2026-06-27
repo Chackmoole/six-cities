@@ -39,7 +39,8 @@ export const Property = () => {
 
   const reviews = useAppSelector(getComments);
   const neighbor = useAppSelector(getNearbyOffers);
-  const offers = null;
+
+  const offers = offer ? [offer, ...(neighbor ?? [])] : [];
 
   return (
     <StatusWrapper isLoading={isLoading} errorMessage={errorMessage} error={error}>
