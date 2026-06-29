@@ -14,9 +14,10 @@ interface IProps {
   heightStyle: string;
   cityCentre: ILocation;
   offers: IOffer[] | null;
+  id?: number;
 }
 
-export const Map = ({ heightStyle, cityCentre, offers }: IProps) => {
+export const Map = ({ heightStyle, cityCentre, offers, id }: IProps) => {
   const mapContainer = useRef(null);
   const activeTown = useSelector(getActiveTown);
   const activeHoverOffer = useSelector(getActiveHoverOffer);
@@ -33,14 +34,22 @@ export const Map = ({ heightStyle, cityCentre, offers }: IProps) => {
       if (offers) {
         offers.forEach((offer) => {
           const marker = document.createElement('div');
-          marker.style.backgroundImage = `url(${iconMarker})`;
-          marker.style.width = '27px';
-          marker.style.height = '39px';
-          marker.style.cursor = 'pointer';
-          activeHoverOffer === offer.id
-            ? (marker.style.backgroundImage = `url(${iconActiveMarker})`)
-            : (marker.style.backgroundImage = `url(${iconMarker})`);
+          if(offer.id === id){
+            marker.style.backgroundImage = `url(${iconActiveMarker})`;
+            marker.style.width = '27px';
+            marker.style.height = '39px';
+            marker.style.cursor = 'pointer';
+          }
+          else {
+            marker.style.backgroundImage = `url(${iconMarker})`;
+            marker.style.width = '27px';
+            marker.style.height = '39px';
+            marker.style.cursor = 'pointer';
 
+            activeHoverOffer === offer.id
+              ? (marker.style.backgroundImage = `url(${iconActiveMarker})`)
+              : (marker.style.backgroundImage = `url(${iconMarker})`);
+          }
           if (map) {
             new maplibregl.Marker({ element: marker })
               .setLngLat([offer.location.longitude, offer.location.latitude])
@@ -50,7 +59,7 @@ export const Map = ({ heightStyle, cityCentre, offers }: IProps) => {
         );
       }
     }
-  }, [activeHoverOffer, activeTown, cityCentre, offers]);
+  }, [activeHoverOffer, activeTown, cityCentre, offers, id]);
 
   return (
     <div ref={mapContainer} style={{ width: '100%', height: heightStyle }} />

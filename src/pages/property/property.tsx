@@ -199,7 +199,7 @@ export const Property = () => {
                       <PropertyReviews reviews={reviews ?? []} authorizationStatus={authorizationStatus} />
                     </div>
                   </div>
-                  <PropertyMap cityCentre={offer.city.location} offers={offers}/>
+                  <PropertyMap cityCentre={offer.city.location} offers={offers} id={Number(id)}/>
                 </>
               )}
 
