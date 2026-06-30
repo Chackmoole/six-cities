@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {IReview} from '../types/types';
-import {fetchComments} from './actions';
+import {fetchComments, postComment} from './actions';
 
 interface IComments {
   comments?: IReview[];
@@ -19,9 +19,11 @@ export const commentsSlice = createSlice({
     builder
       .addCase(fetchComments.fulfilled, (state, action) => {
         state.comments = action.payload;
+      })
+      .addCase (postComment.fulfilled, (state, action) => {
+        state.comments = action.payload;
       });
   }
-
 });
 
 export const commentsReducer = commentsSlice.reducer;

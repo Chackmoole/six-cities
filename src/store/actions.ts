@@ -8,7 +8,7 @@ import {
 } from '../api/auth';
 import { getOfferFromServer } from '../api/offer';
 import {getNearbyOfferFromServer} from '../api/nearby-offers';
-import {getAllComments} from '../api/comments';
+import {getAllComments, postNewComment} from '../api/comments';
 
 export const fetchOffers = createAsyncThunk<IOffer[]>(
   'fetchOffers',
@@ -59,3 +59,10 @@ export const fetchComments = createAsyncThunk <IReview[], number>
   }
 );
 
+export const postComment = createAsyncThunk <IReview[], { id: number; body: IReview }> (
+  'postComment',
+  async ({id, body}) => {
+    const response = await postNewComment(id, body);
+    return response.data;
+  }
+);
