@@ -1,7 +1,7 @@
-import {CITIES} from '../data/cities';
+import { CITIES } from '../data/cities';
 
 export interface IOffer {
-  city:{
+  city: {
     name: string;
     location: {
       latitude: number;
@@ -20,14 +20,14 @@ export interface IOffer {
   maxAdults: number;
   price: number;
   goods: string[];
-  host:{
+  host: {
     id: number;
     name: string;
     isPro: boolean;
     avatarUrl: string;
   };
   description: string;
-  location:{
+  location: {
     latitude: number;
     longitude: number;
     zoom: number;
@@ -35,7 +35,7 @@ export interface IOffer {
   id: number;
 }
 
-export type ICitiesName = typeof CITIES[number];
+export type ICitiesName = (typeof CITIES)[number];
 
 export interface ILocation {
   latitude: number;
@@ -66,4 +66,15 @@ export interface IReview {
 export interface ISortOption {
   value: string;
   label: string;
+}
+
+export type IAuthorizationStatus = 'auth' | 'noAuth' | 'unknown';
+
+export interface IAuth {
+  avatarUrl: string;
+  email: string;
+  id: number;
+  isPro: boolean;
+  name: string;
+  token: string;
 }

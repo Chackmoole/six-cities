@@ -1,7 +1,14 @@
-import {Map} from '../map/map';
+import { Map } from '../map/map';
+import {ILocation, IOffer} from '../../types/types';
 
-export const PropertyMap = () => (
-  <section className="property__map map">
-    <Map heightStyle={'579px'}></Map>
+interface IProps {
+  cityCentre: ILocation;
+  offers: IOffer[] | null;
+  id: number;
+}
+
+export const PropertyMap = ({cityCentre, offers, id} : IProps) => (
+  <section id="map" className="property__map map">
+    <Map heightStyle={'579px'} cityCentre={cityCentre} offers={offers} id={id}></Map>
   </section>
 );
